@@ -1,7 +1,7 @@
 Gurunudi Client: The official Python client for Gurunudi AI API
 ***************************************************************
 
-**Gurunudi Client** is a Python library for accessing the Gurunudi AI API.
+**Gurunudi Client** is a Python library for accessing the `Gurunudi AI API <https://www.gurulaghu.com/api/>`_.
 Gurunudi (**AI as a Service**) provides a wide range of **Artificial Intelligence based API solutions** like language detection, natural language processing, text and image classification, topic modeling, intent extraction, chatbot, knowledge, web search, news search, image search, autocomplete, spelling and grammar check etc.
 This client library for Gurunudi AI API is commercial open-source software, released under the MIT license.
 
