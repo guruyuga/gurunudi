@@ -30,14 +30,13 @@ The Gurunudi project is maintained by `@gurudevrao <https://github.com/gurudevra
 
 ====================== ===
 **Bug Reports**        `GitHub Issue Tracker`_
-**Usage Questions**    `StackOverflow`_, `Gitter Chat`_, `Reddit User Group`_
-**General Discussion** `Gitter Chat`_, `Reddit User Group`_
+**Usage Questions**    `StackOverflow`_, `Gitter Chat`_
+**General Discussion** `Gitter Chat`_
 ====================== ===
 
 .. _GitHub Issue Tracker: https://github.com/gurulaghu/gurunudi/issues
 .. _StackOverflow: http://stackoverflow.com/questions/tagged/gurunudi
 .. _Gitter Chat: https://gitter.im/gurulaghu/gurunudi
-.. _Reddit User Group: https://www.reddit.com/r/gurunudi
 
 Features of Gurunudi AI API
 ===========================
