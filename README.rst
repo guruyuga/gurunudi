@@ -7,7 +7,9 @@ This client library for Gurunudi AI API is commercial open-source software, rele
 
 💫 **Version 1.0 of Gurunudi AI API out now!** `Check out the features here. <https://gurulaghu.com/api/>`_
 
-`Gurunudi on Gitter <https://gitter.im/gurulaghu/gurunudi>`_ - 
+.. image:: https://badges.gitter.im/gurulaghu/gurunudi.svg
+    :target: https://gitter.im/gurulaghu/gurunudi
+    :alt: Gurunudi on Gitter 
 `Gurunudi on Twitter <https://twitter.com/gurulaghu>`_
 
 📖 Documentation
