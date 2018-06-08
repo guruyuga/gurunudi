@@ -51,14 +51,14 @@ Updating
 Basics
 -----
 
-All calls are made by passing the text to ai as an argument. ai takes a second optional argument as the language code which defaults to english. The language code can be either a 2-letter `ISO 639-1 code <https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes>`_ or a 3-letter `ISO 639-3 code <https://en.wikipedia.org/wiki/List_of_ISO_639-3_codes>`_. For language codes and features currently supported by each language, see `supported languages <https://gurulaghu.com/languages/>`_
-
 .. code:: python
 
     from gurunudi import ai
 
-    ai('sample text') #text language defaults to English
-    ai('Beispieltext','deu') #now language of text is set to German
+    ai('sample text') #language is assumed to be English
+    ai('Beispieltext','deu') #language of text is set to German
+
+All calls are made by passing the text to ai as an argument. ai takes a second optional argument as the language code which defaults to english. The language code can be either a 2-letter `ISO 639-1 code <https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes>`_ or a 3-letter `ISO 639-3 code <https://en.wikipedia.org/wiki/List_of_ISO_639-3_codes>`_. For language codes and features currently supported by each language, see `supported languages <https://gurulaghu.com/languages/>`_.
 
 All the AI functionalities of Gurunudi are available as properties of the ai object. (See below)
 
@@ -79,6 +79,35 @@ Language Detection
 
     language_name = ai('lorem ipsum').language #returns "Latin"
     language_name = ai('ನನ್ನ ಹೆಸರು ಗುರು').language #returns "Kannada"
+
+Sentiment Analysis
+------------------
+
+.. code:: python
+
+    sentiment = ai('I really did not like that movie').sentiment #returns "positive"
+    sentiment = ai('she is very beautiful').sentiment #returns "negative"
+    sentiment = ai('The ambience was good, but the food was bad').sentiment #returns "mixed"
+    sentiment = ai('roses are red, violets are blue').sentiment #returns "neutral"
+
+Co-reference Resolution
+-----------------------
+
+.. code:: python
+
+    corefed_text = ai('Einstein was a brillian scientist. He was born in Germany.').coref_resolved_text
+    #now corefed_text = 'Einstein was a brillian scientist. Einstein was born in Germany.'
+
+    corefed_text = ai('The women stopped taking pills because they were pregnant.').coref_resolved_text
+    #now corefed_text = 'The women stopped taking pills because the women were pregnant'
+
+Named Entities
+--------------
+
+.. code:: python
+
+    named_entities = ai('India is in Asia').named_entities #returns a list of named entities, their labels and position in the text
+    #now named_entities = [{'label': 'GPE', 'end': 5, 'start': 0, 'name': 'India'}, {'label': 'LOC', 'end': 16, 'start': 12, 'name': 'Asia'}]
 
 💬 Where to ask questions
 ==========================
