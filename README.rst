@@ -1,25 +1,63 @@
-Gurunudi Client: The official Python client for Gurunudi AI API
-***************************************************************
+Gurunudi: The official Python client for Gurunudi AI API by GuruLaghu Technologies
+**********************************************************************************
 
-**Gurunudi Client** is a Python library for accessing the `Gurunudi AI API <https://www.gurulaghu.com/api/>`_.
-Gurunudi (**AI as a Service**) provides a wide range of **Artificial Intelligence based API solutions** like language detection, natural language processing, text and image classification, topic modeling, intent extraction, chatbot, knowledge, web search, news search, image search, autocomplete, spelling and grammar check etc.
-This client library for Gurunudi AI API is commercial open-source software, released under the MIT license.
+**Gurunudi** is a Python library by `GuruLaghu Technologies <https://gurulaghu.com/>`_ for accessing the `Gurunudi AI API <https://www.gurunudi.com/>`_.
+Gurunudi (**AI as a Service**) provides a wide range of **Artificial Intelligence based API solutions** (See below). This client library for Gurunudi AI API is commercial open-source software, released under the MIT license.
 
 .. image:: https://badges.gitter.im/gurulaghu/gurunudi.svg
     :target: https://gitter.im/gurulaghu/gurunudi
     :alt: Gurunudi on Gitter 
 `Gurunudi on Twitter <https://twitter.com/gurulaghu>`_
 
-📖 Documentation
+
+📖 Installation
 ================
 
 ===================  ===
-`API Reference`_     The detailed reference for Gurunudi AI API.
-`Demo`_              The official online demo of Gurunudi AI API.
+**Operating system** macOS / OS X, Linux, Windows
+**Python version**   3.4+ (not tested in earlier versions)
+**Package managers** `pip`_ (source packages only)
 ===================  ===
 
-.. _Demo: https://gurulaghu.com/demo/
-.. _API Reference: https://gurulaghu.com/api/
+.. _pip: https://pypi.python.org/pypi/gurunudi
+
+pip
+---
+
+Using pip, gurunudi releases are currently only available as source packages.
+
+.. code:: bash
+
+    pip install gurunudi
+
+When using pip it is generally recommended to install packages in a virtual environment to avoid modifying system state:
+
+.. code:: bash
+
+    venv .env
+    source .env/bin/activate
+    pip install gurunudi
+
+Updating
+--------
+
+.. code:: bash
+
+    pip install -U gurunudi
+
+📖 Documentation
+================
+
+Chatbot
+--------
+
+.. code:: python
+
+    from gurunudi import ai
+    response = ai('how are you?').chat #returns a string ex: "I am fine"
+    response = ai('where is Badami').chat #returns a string ex: "in Karnataka, India"
+    response = ai('do you eat cakes?').chat #returns a string ex: "softwares do not eat"
+    response = ai('solve 3x-12=0').chat #returns a string ex: "4"
 
 💬 Where to ask questions
 ==========================
@@ -39,10 +77,6 @@ The Gurunudi project is maintained by `@gurudevrao <https://github.com/gurudevra
 Features of Gurunudi AI API
 ===========================
 
-* **FREE for commercial use**
-* **No API Key** required, **No rate limit** for the Free API
 * Not just English, Support exists for an ever growing list of **100+** `languages <https://gurulaghu.com/languages/>`
-* Pre-trained models that are continuously updated for better accuracy
-* Wide range of AI APIs solving different AI problems. Choose the one that meets your requirements, or combine more than one APIs in a single call.
-
-📖  **For more details, visit** `Gurunudi AI API <https://gurulaghu.com/api/>`_.
+* Pre-trained models that are continuously updated for better accuracy.
+* Wide range of AI APIs solving different AI problems.
