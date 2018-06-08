@@ -48,16 +48,37 @@ Updating
 📖 Documentation
 ================
 
-Chatbot
---------
+Basics
+-----
+
+All calls are made by passing the text to ai as an argument. ai takes a second optional argument as the language code which defaults to english. The language code can be either a 2-letter `ISO 639-1 code <https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes>`_ or a 3-letter `ISO 639-3 code <https://en.wikipedia.org/wiki/List_of_ISO_639-3_codes>`_. For language codes and features currently supported by each language, see `supported languages <https://gurulaghu.com/languages/>`_
 
 .. code:: python
 
     from gurunudi import ai
+
+    ai('sample text') #text language defaults to English
+    ai('Beispieltext','deu') #now language of text is set to German
+
+All the AI functionalities of Gurunudi are available as properties of the ai object. (See below)
+
+Chatbot
+-------
+
+.. code:: python
+
     response = ai('how are you?').chat #returns a string ex: "I am fine"
     response = ai('where is Badami').chat #returns a string ex: "in Karnataka, India"
     response = ai('do you eat cakes?').chat #returns a string ex: "softwares do not eat"
     response = ai('solve 3x-12=0').chat #returns a string ex: "4"
+
+Language Detection
+------------------
+
+.. code:: python
+
+    language_name = ai('lorem ipsum').language #returns "Latin"
+    language_name = ai('ನನ್ನ ಹೆಸರು ಗುರು').language #returns "Kannada"
 
 💬 Where to ask questions
 ==========================
