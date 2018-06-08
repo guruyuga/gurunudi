@@ -111,7 +111,7 @@ class ai(object):
 		return None
 
 	@property
-	def sentiment(self):
+	def chat(self):
 		"""
 		returns: returns response to the text document - ideal for chatbots
 		"""
