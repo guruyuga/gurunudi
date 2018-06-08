@@ -13,17 +13,25 @@ class ai(object):
 #		# explicitly only pass value to the str constructor
 #		return super(string, cls).__new__(cls, value)
 
-	def __init__(self,text,language_code="eng",locale=None):
+	def __init__(self,text,language_code=None):
 		"""
 		text (string): document text 
-		language_code (string): ISO 639-3 or ISO 639-2 language code of the document text, defaults to english (not applicable for language detection calls)
+		language_code (string): ISO 639-3 or ISO 639-2 language code of the document text if already known, else language detection call will be used to guess the language
 		"""
 		self.__id=None
 		self.__text=text
-		self.__language_code=language_code
 
 		#if language code contains hyphen then the text after hyphen is considered to be its locale, ex: en-US or eng-US or zh-TW
-		self.__locale=language_code.split[1] if '-' in language_code and language_code[-1]!='-' else None
+		if language_code and '-' in language_code:
+			arr=language_code.split[1]
+			self.__language_code=arr[0]
+			self.__locale=arr[1]
+		else:
+			self.__language_code=language_code
+			self.__locale=None
+
+		if self.__language_code and self.__language_code not in languages:
+			raise APIError(ERROR_INVALID_LANGUAGE_CODE+" "+self.__language_code)
 
 		#stores the responses to different Gurunudi AI API queries by this text document
 		self.__responses={}
@@ -113,7 +121,7 @@ class ai(object):
 	@property
 	def chat(self):
 		"""
-		returns: returns response to the text document - ideal for chatbots
+		returns: response to the text document - ideal for chatbots
 		"""
 
 		#call Gurunudi API if not called already to analyze sentiment
@@ -122,6 +130,21 @@ class ai(object):
 		api_response=self.__responses.get(API_CHAT)
 		if api_response:	
 			return api_response.get(FIELD_RESPONSE)
+
+		return None
+
+	@property
+	def coref_resolved_text(self):
+		"""
+		returns: text after resolving any coreferences. Ex: try "Einstein was a brilliant scientist. He was born in Germany."
+		"""
+
+		#call Gurunudi API if not called already to analyze sentiment
+		self.__call_api(API_COREF_RESOLUTION)
+
+		api_response=self.__responses.get(API_COREF_RESOLUTION)
+		if api_response:	
+			return api_response.get(FIELD_TEXT)
 
 		return None
 
