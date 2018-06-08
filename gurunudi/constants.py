@@ -46,4 +46,5 @@ FIELD_DEP='dependency'
 
 
 ERROR_SERVER_INACCESSIBLE="server_inaccessible"
+ERROR_INVALID_LANGUAGE_CODE="invalid_language_code"
 
