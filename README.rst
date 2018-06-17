@@ -1,6 +1,8 @@
 Gurunudi: The official Python client for Gurunudi AI API by GuruLaghu Technologies
 **********************************************************************************
 
+**Announcement:** A stable beta with all bug fixes will be released on or before 25 June 2018
+
 **Gurunudi** is a Python library by `GuruLaghu Technologies <https://gurulaghu.com/>`_ for accessing the `Gurunudi AI API <https://www.gurunudi.com/>`_.
 Gurunudi (**AI as a Service**) provides a wide range of **Artificial Intelligence based API solutions** (See below). This client library for Gurunudi AI API is commercial open-source software, released under the MIT license.
 
