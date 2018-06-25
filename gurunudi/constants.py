@@ -15,13 +15,18 @@ API_SYNTACTIC_DEPENDENCY='syntactic_dependency'		#creates syntactic dependency t
 API_TOPIC_MODELING	='topic_modeling'		#returns a list of topics associated with the document
 API_SPELL_CHECK		='spell_check'			#checks any spelling mistakes in a text document
 API_CHAT		='chat'				#real time conversation and knowledge q&a - ideal for chatbots
+API_SUMMARY		='summary'			#returns short summary of a large text document
+API_DEFINE		='define'			#returns definition of word or noun or phrase
+API_TRANSLATE		='translate'			#translates from source language to destination language
+API_TITLE		='title'			#returns title for a large text
+API_FIX_CASE		='fix_case'			#returns text after fixing any incorrect case issues
 
 """
 Fields returned in response JSON by Gurunudi API calls and Fields sent in request JSON to Gurunudi API calls
 """
 FIELD_LANGUAGES='languages'
 FIELD_LANGUAGE_CODE='language_code'
-FIELD_RESPONSE='response'
+FIELD_TARGET_LANGUAGE_CODE='target_language_code'
 FIELD_ISO1='iso639_1'
 FIELD_ISO3='iso639_3'
 FIELD_SENTIMENT='sentiment'
@@ -39,10 +44,13 @@ FIELD_NAME="name"
 FIELD_LABEL="label"
 FIELD_SUGGESTION='suggestion'
 FIELD_SUGGESTIONS='suggestions'
-FIELD_OFFSET='offset'
 FIELD_POS='pos'
 FIELD_LEMMA='lemma'
 FIELD_DEP='dependency'
+FIELD_MAIN_REF='mainref'
+FIELD_START='start'
+FIELD_ENTRIES='entries'
+FIELD_COREFS='corefs'
 
 
 ERROR_SERVER_INACCESSIBLE="server_inaccessible"

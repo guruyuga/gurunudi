@@ -1,10 +1,10 @@
 #!/usr/bin/env python
 
-from .gurunudi import client,APIError
+from .gurunudi import api,APIError
 from .constants import *
 from .language_codes import *
 
-class ai(object):
+class AI(object):
 	"""
 	Python class wrapper for Gurunudi AI methods
 	"""
@@ -21,6 +21,8 @@ class ai(object):
 		self.__id=None
 		self.__text=text
 
+		self.__latest_error=None
+
 		#if language code contains hyphen then the text after hyphen is considered to be its locale, ex: en-US or eng-US or zh-TW
 		if language_code and '-' in language_code:
 			arr=language_code.split[1]
@@ -34,6 +36,31 @@ class ai(object):
 			raise APIError(ERROR_INVALID_LANGUAGE_CODE+" "+self.__language_code)
 
 		#stores the responses to different Gurunudi AI API queries by this text document
+		self.__responses={}
+	
+		#setting this to True disables api call cache.
+		self.__disable_cache=False
+
+	@disable_cache
+	def disable_cache(self):
+		"""
+		returns: True if api call cache has been disabled, else False
+		"""
+		return self.__disable_cache
+
+
+	@disable_cache.setter
+	def disable_cache(self, disable):
+		"""
+		disable (boolean): disables api call cache if True, else enables it
+		"""
+		self.__disable_cache=disable_cache
+
+
+	def clear_cache(self):
+		"""
+			clears api call cache. useful to call in case of large memory usage
+		"""
 		self.__responses={}
 	
 	@property
@@ -121,22 +148,85 @@ class ai(object):
 	@property
 	def chat(self):
 		"""
-		returns: response to the text document - ideal for chatbots
+		returns: chat response to the text document - ideal for chatbots
 		"""
 
-		#call Gurunudi API if not called already to analyze sentiment
+		#call Gurunudi API
 		self.__call_api(API_CHAT)
 
 		api_response=self.__responses.get(API_CHAT)
 		if api_response:	
-			return api_response.get(FIELD_RESPONSE)
+			return api_response.get(FIELD_TEXT)
 
 		return None
 
 	@property
-	def coref_resolved_text(self):
+	def intents(self):
 		"""
-		returns: text after resolving any coreferences. Ex: try "Einstein was a brilliant scientist. He was born in Germany."
+		returns: intents of the text document
+		"""
+
+		#call Gurunudi API if not called already to extract intent
+		self.__call_api(API_INTENT)
+
+		api_response=self.__responses.get(API_INTENT)
+		if api_response:	
+			return api_response.get(FIELD_INTENTS)
+
+		return None
+
+	@property
+	def title(self):
+		"""
+		returns: an appropriate title for a large text document like a news article or blog
+		"""
+
+		#call Gurunudi API if not called already to extract title
+		self.__call_api(API_TITLE)
+
+		api_response=self.__responses.get(API_TITLE)
+		if api_response:	
+			return api_response.get(FIELD_TEXT)
+
+		return None
+
+	@property
+	def fix_case(self):
+		"""
+		returns: text after fixing any incorrect case issues in it
+		"""
+
+		#call Gurunudi API if not called already to fix case
+		self.__call_api(API_FIX_CASE)
+
+		api_response=self.__responses.get(API_FIX_CASE)
+		if api_response:	
+			return api_response.get(FIELD_TEXT)
+
+		return None
+
+
+	@property
+	def summary(self):
+		"""
+		returns: short summary of a large text document like a news article or blog
+		"""
+
+		#call Gurunudi API if not called already to extract summary
+		self.__call_api(API_SUMMARY)
+
+		api_response=self.__responses.get(API_SUMMARY)
+		if api_response:	
+			return api_response.get(FIELD_TEXT)
+
+		return None
+
+	@property
+	def coreferences(self):
+		"""
+		returns: a list of dictionaries where dict is of the form
+		{"text":<text_in_document>,"start":<co-reference_start_index>,"mainref":<main_reference_text>}
+		
 		"""
 
 		#call Gurunudi API if not called already to analyze sentiment
@@ -144,7 +234,147 @@ class ai(object):
 
 		api_response=self.__responses.get(API_COREF_RESOLUTION)
 		if api_response:	
+			return api_response.get(FIELD_COREFS)
+
+		return None
+ 
+	@property
+	def definition(self):
+		"""
+		returns: most popular definition of given word or noun
+		
+		"""
+
+		definitions = self.definitions
+
+		if definitions and len(definitions)>0:
+			return definitions[0].get(FIELD_TEXT)
+
+		return None
+
+	@property
+	def definitions(self):
+		"""
+		returns: all definitions of given word or noun
+		
+		"""
+
+		self.__call_api(API_DEFINE)
+
+		api_response=self.__responses.get(API_DEFINE)
+		if api_response:	
+			return api_response.get(FIELD_DEFINITIONS)
+
+		return None
+
+	@property
+	def summary(self):
+		"""
+		returns: short summary of a given large text
+		
+		"""
+
+		self.__call_api(API_SUMMARY)
+
+		api_response=self.__responses.get(API_SUMMARY)
+		if api_response:	
 			return api_response.get(FIELD_TEXT)
+
+		return None
+
+	@property
+	def syntax(self):
+		"""
+		returns: parts of speech of each token in the given text
+		
+		"""
+
+		self.__call_api(API_SYNTAX_ANALYSIS)
+
+		api_response=self.__responses.get(API_SYNTAX_ANALYSIS)
+		if api_response:	
+			return api_response.get(FIELD_SYNTAX)
+
+		return None
+
+	@property
+	def syntax_tree(self):
+		"""
+		returns: dependecy parsing tree of each sentence in the text
+		
+		"""
+
+		self.__call_api(API_SYNTACTIC_DEPENDENCY)
+
+		api_response=self.__responses.get(API_SYNTACTIC_DEPENDENCY)
+		if api_response:	
+			return api_response.get(FIELD_SENTENCES)
+
+		return None
+
+
+
+	def translate(self,target_language_code):
+		"""
+		target_language_code: destination language code to translate given text.. see language_codes.py for supported language codes
+		returns: translated text if translation was successful, else returns None
+		
+		"""
+
+		self.__call_api(API_TRANSLATE,FIELD_TARGET_LANGUAGE_CODE,target_language_code)
+
+		api_response=self.__responses.get(API_TRANSLATE)
+		if api_response:
+			api_response_for_target_language_code=api_response.get(target_language_code)
+			if api_response_for_target_language_code:
+				return api_response_for_target_language_code.get(FIELD_TEXT)
+
+		return None
+
+
+	def replace(self,replacements,target_field):
+		"""
+		replacements: list of dictionaries of the form [{"start":<start_index_of_text_to_replace>,"text":"<text_being_replaced>","<target_field>":"<replacement_text>"},...]
+		target_field: name of the field in each replacements dictionary that contains the replacement text
+		returns: text after replacing given replacements with text in target_field
+		
+		"""
+
+		text=self.text
+		inx=0		
+		lst=[]
+		for replacement in replacements:#for each piece of text to be replaced
+
+			#get start index of replacement text
+			pos=replacement[FIELD_START]			
+
+			#add any pending text before text being replaced
+			if pos>0: 
+				lst.append(text[inx:pos])	
+
+			#add replacement text		
+			lst.append(replacement[target_field]) 
+
+			#move index to next char after replaced text
+			inx=replacement[FIELD_START]+len(replacement[FIELD_TEXT]) 
+		#add any pending last bit
+		if inx<len(text):
+			lst.append(text[inx:])
+		return ''.join(lst)
+
+	@property
+	def coreferenced_text(self):
+		"""
+		returns: text after resolving coreferences
+		
+		"""
+
+		#call Gurunudi API if not called already to resolve coreferences
+		corefs=self.coreferences
+		
+		#return coreferenced text by replacing coreferences with corresponding nouns
+		if corefs:
+			return replace(corefs,FIELD_MAIN_REF)
 
 		return None
 
@@ -168,7 +398,7 @@ class ai(object):
 	def named_entities(self):
 		"""
 		returns: a list of dictionaries where dict is of the form
-		{"name":<entity_name>,"label":<entity_label>,"start":<entity_start_index_in_document>,"LABEL":<entity_end_index_plus_1_in_document>}
+		{"text":<entity_text>,"start":<entity_start_index>,"label":<entity_label>}
 		"""
 
 		#call Gurunudi API if not called already to extract named entities
@@ -184,7 +414,7 @@ class ai(object):
 	def spell_check(self):
 		"""
 		returns: a list of dictionaries where dict is of the form
-		{"offset":<start_index>,"text":<text_in_document>,"suggestion":<suggested_replacement_for_text>}
+		{"text":<text_in_document>,"start":<error_start_index>,"suggestion":<suggested_replacement_for_text>}
 		
 		"""
 
@@ -195,10 +425,48 @@ class ai(object):
 		if api_response:	
 			return api_response.get(FIELD_SUGGESTIONS)
 
-		return None			
+		return None	
+
+	@property
+	def spell_checked_text(self):
+		"""
+		returns: text after fixing any spelling errors
+		
+		"""
+
+		#call Gurunudi API if not called already to check spellings
+		spell_checks=self.spell_check
+		
+		#return spell checked text by replacing spelling mistakes with suggestions
+		if spell_checks:
+			return replace(spell_checks,FIELD_SUGGESTION)
+
+		return None		
 
 	@property
 	def keywords(self):
+		"""
+		returns: a list of keywords in the document			
+
+		"""
+
+		#call Gurunudi API if not called already to extract keywords
+		self.__call_api(API_KEYWORD_EXTRACTION)
+
+		api_response=self.__responses.get(API_KEYWORD_EXTRACTION)
+		if api_response:	
+			key_count = api_response.get(FIELD_KEYWORDS)
+			if key_count:				
+				return list(key_count.keys)
+
+		return None
+
+	@property
+	def latest_error(self):			
+		return self.__latest_error
+
+	@property
+	def keywords_with_count(self):
 		"""
 		returns: a dictionary {<keyword>:<keyword_count>} where keyword_count is the number of times the keyword has appeared in the document			
 
@@ -242,20 +510,30 @@ class ai(object):
 		"""
 		self.__responses={}
 
-	def __call_api(self,api):
+	def __call_api(self,api,addtional_key=None,additional_value=None):
 		"""
 		calls given api if not already called for this document
 		"""
-		if api not in self.__responses:#call API if not called already
-			client.call_api(api,[self])
+		if api==API_CHAT or api not in self.__responses:#call API if not called already or if this is a chat
+			client.call_api(api,[self],addtional_key,addtional_value)
+		else: #if API already called
+			if addtional_key is not None:#if we have additional info for this API
+				if addtional_key not in self.__responses[api]:#if API not called for additional info ex: target language code
+					client.call_api(api,[self],addtional_key,addtional_value)
 
-	def set_response(self,api,response):
+	def set_response(self,api,response,additional_key):
 		"""
 		sets the given response JSON dict to given api name
 		"""
 		if FIELD_ERRORS in response:
-			raise APIError(' '.join(response[FIELD_ERRORS]))
+			self.__latest_error = ' '.join(response[FIELD_ERRORS])
 		else:
-			self.__responses[api]=response
+			self.__latest_error=None #if successful call, reset latest error to None
+
+			if additional_key:#if api uses additional info, like translation api that needs a target language.. then cache the response at additional info level under the api name..
+				key_specific_responses=self.__responses.setdefault(api,{}):
+				key_specific_responses[additional_key]=response
+			else:
+				self.__responses[api]=response
 
 
