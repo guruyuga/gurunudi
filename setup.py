@@ -3,7 +3,7 @@
 from setuptools import setup
 
 setup(name='gurunudi',
-      version='0.1',
+      version='0.2',
       description='The official Python client for Gurunudi AI API',
       url='http://github.com/gurulaghu/gurunudi',
       author='GuruLaghu Technologies',
