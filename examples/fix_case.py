@@ -10,7 +10,7 @@ api.key="<YOUR_GURUNUDI_API_KEY>"
 ai = AI("i went to jaPan")
 
 #The AI attribute "fix_case" returns a case fixed version of given text
-print(ai.fix_case == "I went to Japan")
+assert(ai.fix_case == "I went to Japan")
 
 #If there was any error during the attribute call, then ai.latest_error will contain the error string, else it will be None
 #if ai.fix_case returns None i.e. if fix case API fails, then check this value for the corresponding error message
