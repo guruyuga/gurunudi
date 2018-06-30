@@ -2,9 +2,13 @@
 
 from setuptools import setup
 
+
+readme=open('README.rst',encoding='utf8').read()
+
 setup(name='gurunudi',
       version='1.1',
       description='The official Python client for Gurunudi AI API',
+      long_description=readme,
       url='http://github.com/gurulaghu/gurunudi',
       author='GuruLaghu Technologies',
       author_email='gurulaghu@use.startmail.com',
