@@ -308,7 +308,7 @@ class AI(object):
 
 		api_response=self.__responses.get(constants.API_SYNTACTIC_DEPENDENCY)
 		if api_response:	
-			return api_response.get(constants.FIELD_SENTENCES)
+			return api_response.get(constants.FIELD_DEPENDENCIES)
 
 		return None
 
@@ -535,4 +535,5 @@ class AI(object):
 				key_specific_responses[additional_key]=response
 			else:
 				self.__responses[api]=response
+
 
