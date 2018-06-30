@@ -69,9 +69,10 @@ Features of Gurunudi
 
 * Not just English, support exists for an ever growing list of **100+** `languages <https://gurulaghu.com/languages/>`
 * Pre-trained models that are continuously updated for better accuracy and to support more languages.
-* Text Analysis - Chatbot, Language Detection, Sentiment Analysis, Named Entities, Co-reference Resolution, Topic Modeling, Spell Check, and more
+* Text Analysis - Language Detection, Sentiment Analysis, Named Entities, Sentence Extraction, Syntax Analysis, Dependency Parse Tree and more 
+* Text Generation - Chatbot, Topic Modeling, Keywords Extraction, Definitions, Summarization, Title Generation, Translation and more
+* Text Modification - Co-reference Resolution, Spell Check, Case Fixing (True Case) and more
 * Knowledge Graph - available via chatbot
-* Translation
 * More cutting edge AI features are being added continuously
 
 
@@ -108,6 +109,36 @@ Chatbot
     response = AI("solve 3x-12=0").chat #returns a string ex: "4"
 
 
+Co-reference Resolution
+-----------------------
+
+.. code:: python
+
+    coreferenced_text = AI("Einstein was a brillian scientist. He was born in Germany.").coreferenced_text
+    #now coreferenced_text = "Einstein was a brillian scientist. Einstein was born in Germany."
+
+    coreferenced_text = AI("The women stopped taking pills because they were pregnant.").coreferenced_text
+    #now coreferenced_text = "The women stopped taking pills because the women were pregnant"
+
+
+Definition
+----------
+
+.. code:: python
+
+    definition = AI("sun").definition 
+    #now definition = "the star that is the source of light and heat for the planets in the solar system"
+
+
+Fix Case
+--------
+
+.. code:: python
+
+    case_fixed_text = AI("delhi is the capital of iNdia").fix_case
+    #now case_fixed_text = "Delhi is the capital of India"
+
+
 Intent
 ------
 
@@ -129,64 +160,25 @@ Intent
     #returns [{"intent":"query","theme":"Berlin","query_type":"attribute_value","attribute":"location","tense":"present"}]
 
 
+Keyword Extraction
+------------------
+
+.. code:: python
+
+    keywords = AI("Delhi is in India").keywords
+    #now keywords = ['India', 'Delhi']
+
+
 Language Detection
 ------------------
 
 .. code:: python
 
-    language = AI("lorem ipsum").language #returns "Latin"
-    language = AI("ನನ್ನ ಹೆಸರು ಗುರು").language #returns "Kannada"
+    language = AI("lorem ipsum").language
+    #now language = "Latin"
 
-Sentiment Analysis
-------------------
-
-.. code:: python
-
-    sentiment = AI("I really did not like that movie").sentiment #returns "negative"
-    sentiment = AI("she is very beautiful").sentiment #returns "positive"
-    sentiment = AI("The ambience was good, but the food was bad").sentiment #returns "mixed"
-    sentiment = AI("roses are red, violets are blue").sentiment #returns "neutral"
-
-
-Co-reference Resolution
------------------------
-
-.. code:: python
-
-    coreferenced_text = AI("Einstein was a brillian scientist. He was born in Germany.").coreferenced_text
-    #now coreferenced_text = "Einstein was a brillian scientist. Einstein was born in Germany."
-
-    coreferenced_text = AI("The women stopped taking pills because they were pregnant.").coreferenced_text
-    #now coreferenced_text = "The women stopped taking pills because the women were pregnant"
-
-
-Spell Check
------------
-
-.. code:: python
-
-    corrected_text = AI("whois cming tmorrow").spell_check #fixes any spelling errors and returns the corrected text
-    #now corrected_text = "who is coming tomorrow"
-
-
-Definition
-----------
-
-.. code:: python
-
-    definition = AI("New Delhi").defintion #returns the definition of given word. The word can be a noun or a lexical item or a phrase
-    #now definition = "capital of India"
-
-
-Translate
----------
-
-.. code:: python
-
-    from gurunudi import lang
-
-    translation = AI("India").translate(lang.GERMAN) #currently only word to word translations are supported
-    #now translation = ""
+    language = AI("ನನ್ನ ಹೆಸರು ಗುರು").language
+    #now language = "Kannada"
 
 
 Named Entities
@@ -196,6 +188,80 @@ Named Entities
 
     named_entities = AI("India is in Asia").named_entities #returns a list of named entities, their labels and position in the text
     #now named_entities = [{"label": "GPE", "end": 5, "start": 0, "name": "India"}, {"label": "LOC", "end": 16, "start": 12, "name": "Asia"}]
+
+
+Sentence Extraction
+-------------------
+
+.. code:: python
+
+    sentences = AI("Mr. India was a great movie. It was directed by Shekhar Kapur.").sentences
+    #now sentences = ["Mr. India was a great movie.", "It was directed by Shekhar Kapur."]
+
+
+Sentiment Analysis
+------------------
+
+.. code:: python
+
+    sentiment = AI("I really did not like that movie").sentiment 
+    #now sentiment = "negative"
+
+    sentiment = AI("she is very beautiful").sentiment #returns "positive"
+    #now sentiment = "positive"
+
+    sentiment = AI("The ambience was good, but the food was bad").sentiment #returns "mixed"
+    #now sentiment = "mixed"
+
+    sentiment = AI("roses are red, violets are blue").sentiment #returns "neutral"
+    #now sentiment = "neutral"
+
+
+Spell Check
+-----------
+
+.. code:: python
+
+    corrected_text = AI("whois cming tmorrow").spell_checked_text
+    #now corrected_text = "who is coming tomorrow"
+
+
+Summary Generation
+------------------
+
+.. code:: python
+
+    summary = AI("<SOME_LONG_TEXT>").summary
+    #now summary = <summary_of_the_long_text>
+
+
+Syntax Analysis
+---------------
+
+.. code:: python
+
+    syntax = AI("Moon creates waves").syntax
+    #now syntax = [{'pos': 'PROPN', 'lemma': 'moon', 'text': 'Moon'}, {'pos': 'VERB', 'lemma': 'create', 'text': 'creates'}, {'pos': 'NOUN', 'lemma': 'wave', 'text': 'waves'}]
+
+
+Syntax Dependency Tree
+----------------------
+
+.. code:: python
+
+    syntax_tree = AI("Moon creates waves").syntax_tree
+    #now syntax_tree = [{'head': 1, 'dep': 'nsubj', 'text': 'Moon'}, {'head': 1, 'dep': 'ROOT', 'text': 'creates'}, {'head': 1, 'dep': 'dobj', 'text': 'waves'}]
+
+
+Title Generation
+----------------
+
+.. code:: python
+
+    from gurunudi import lang
+
+    title = AI("<SOME_LONG_TEXT>").title
+    #now title = "<TITLE_SUGGESTED_BY_GURUNUDI_AI>"
 
 
 Topics
@@ -210,58 +276,12 @@ Topics
     #now topics = ["Business"]
 
 
-Summary
---------
+Translate
+---------
 
 .. code:: python
 
-    summary = AI("<SOME_LARGE_TEXT>").summary
-    #now summary contains a short summary text
+    from gurunudi import lang
 
-
-Title
---------
-
-.. code:: python
-
-    title = AI("<SOME_LARGE_TEXT>").title
-    #now title contains an appropriate title for the text
-
-
-Keywords
---------
-
-.. code:: python
-
-    keywords = AI("India is a country in South Asia. It shares land borders with Pakistan to the west; China, Nepal, and Bhutan to the northeast; and Myanmar (Burma) and Bangladesh to the east.").keywords
-    #now keywords = ["Pakistan", "Nepal", "India", "country", "Bhutan", "South Asia", "Myanmar", "northeast", "land borders", "Burma", "east", "Bangladesh", "west", "China"]
-
-
-Sentence Extraction
--------------------
-
-.. code:: python
-
-    sentences = AI("Mr. India was a great movie. It was directed by Shekhar Kapur.").sentences
-    #now sentences = ["Mr. India was a great movie.", "It was directed by Shekhar Kapur."]
-
-
-Syntax Analysis (Part-of-speech tagging)
-----------------------------------------
-
-.. code:: python
-
-    syntax = AI("Indian scientists discover new planet").syntax
-    #now syntax =  [{'pos': 'ADJ', 'lemma': 'indian', 'text': 'Indian', 'index': 1}, {'pos': 'NOUN', 'lemma': 'scientist', 'text': 'scientists', 'index': 2}, {'pos': 'VERB', 'lemma': 'discover', 'text': 'discover', 'index': 3}, {'pos': 'ADJ', 'lemma': 'new', 'text': 'new', 'index': 4}, {'pos': 'NOUN', 'lemma': 'planet', 'text': 'planet', 'index': 5}]
-
-
-Dependency Parse Tree
----------------------
-
-.. code:: python
-
-    dependency = AI("Indian scientists discover new planet").syntax_tree
-    #now dependency =  [{'text': 'Indian scientists discover new planet', 'dependencies': [{'dependency': 'amod', 'head': 2, 'text': 'Indian', 'index': 1}, {'dependency': 'nsubj', 'head': 3, 'text': 'scientists', 'index': 2}, {'dependency': 'ROOT', 'head': 3, 'text': 'discover', 'index': 3}, {'dependency': 'amod', 'head': 5, 'text': 'new', 'index': 4}, {'dependency': 'dobj', 'head': 3, 'text': 'planet', 'index': 5}]
-
-
-
+    translation = AI("India").translate(lang.GERMAN)
+    #now translation = "Indien"
