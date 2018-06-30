@@ -4,7 +4,7 @@ Gurunudi AI API: Python client
 **Gurunudi** is a Python library by `GuruLaghu Technologies <https://gurulaghu.com/>`_ for accessing the `Gurunudi Artificial Intelligence API <https://www.gurunudi.com/>`_.
 Gurunudi (**AI as a Service**) provides a wide range of **Artificial Intelligence based API solutions** (See below). This client library for Gurunudi AI API is commercial open-source software, released under the MIT license.
 
-💫 **Version 1.2 out now!**
+💫 **Version 1.2.1 out now!**
 
 .. image:: https://img.shields.io/pypi/v/gurunudi.svg?style=flat-square
     :target: https://pypi.python.org/pypi/gurunudi
@@ -21,18 +21,14 @@ Gurunudi (**AI as a Service**) provides a wide range of **Artificial Intelligenc
 📖 Installation
 ================
 
-===================  ===
+==================== ===
 **Operating system** macOS / OS X, Linux, Windows
 **Python version**   2+
-**Package managers** `pip`_ (source packages only)
-===================  ===
+**Package managers** `pip <https://pypi.python.org/pypi/gurunudi>`_
+==================== ===
 
-.. _pip: https://pypi.python.org/pypi/gurunudi
-
-pip
----
-
-Using pip, gurunudi releases are currently only available as source packages.
+via pip
+-------
 
 .. code:: bash
 
@@ -51,7 +47,7 @@ Updating
 
 .. code:: bash
 
-    pip install -U gurunudi
+    pip install gurunudi --upgrade
 
 💬 Where to ask questions
 ==========================
@@ -186,6 +182,7 @@ Translate
 ---------
 
 .. code:: python
+
     from gurunudi import lang
 
     translation = AI("India").translate(lang.GERMAN) #currently only word to word translations are supported
@@ -267,10 +264,4 @@ Dependency Parse Tree
     #now dependency =  [{'text': 'Indian scientists discover new planet', 'dependencies': [{'dependency': 'amod', 'head': 2, 'text': 'Indian', 'index': 1}, {'dependency': 'nsubj', 'head': 3, 'text': 'scientists', 'index': 2}, {'dependency': 'ROOT', 'head': 3, 'text': 'discover', 'index': 3}, {'dependency': 'amod', 'head': 5, 'text': 'new', 'index': 4}, {'dependency': 'dobj', 'head': 3, 'text': 'planet', 'index': 5}]
 
 
-Sentence Extraction
--------------------
 
-.. code:: python
-
-    sentences = AI("Mr. India was a great movie. It was directed by Shekhar Kapur.").sentences
-    #now sentences = ["Mr. India was a great movie.", "It was directed by Shekhar Kapur."]
