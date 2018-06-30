@@ -1,6 +1,14 @@
 #!/usr/bin/env python
 
-from gurunudi import AI,api
+#************************************** KEYWORDS ************************************/
+#  
+#  This example shows how to extract keywords from a text using Gurunudi AI
+#  For example: "Delhi is in India" contains the keywords ["Dehi","India"]
+#  
+#************************************** KEYWORDS ************************************/
+
+
+from gurunudi import AI,api,lang
 
 #First setup your API key. This needs to be done only once at the beginning in an application. 
 #Visit https://gurulaghu.com to get an API key
@@ -17,6 +25,6 @@ print(ai.keywords)
 assert(ai.latest_error==None)
 
 #By default the text is assumed to be in English language. If the text is in a different language, you can pass the corresponding language code. See example below for German text.
-ai = AI("L'India, ufficialmente Repubblica dell'India, è uno Stato federale dell'Asia meridionale, con capitale Nuova Delhi.",gurunudi.ITALIAN)
+ai = AI("L'India, ufficialmente Repubblica dell'India, è uno Stato federale dell'Asia meridionale, con capitale Nuova Delhi.",lang.ITALIAN)
 
 #For the latest updated list of languages supported by Gurunudi for keywords extraction visit https://gurulaghu.com/languages/

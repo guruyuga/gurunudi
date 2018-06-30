@@ -1,5 +1,13 @@
 #!/usr/bin/env python
 
+#***************************** LANGUAGE DETECTION ******************************/
+#  
+#  This example shows how to detect the language of a text using Gurunudi AI
+#  For example, "get me some coffee" is ENGLISH, while "Lorem Ipsum" is LATIN
+#  
+#***************************** LANGUAGE DETECTION ******************************/
+
+
 from gurunudi import AI,api
 
 #First setup your API key. This needs to be done only once at the beginning in an application. 
@@ -10,7 +18,6 @@ api.key="<YOUR_GURUNUDI_API_KEY>"
 ai = AI("lorem ipsum")
 
 #The AI attribute "language" returns the name of the language detected by Gurunudi AI API for the given text
-print(ai.language)
 assert(ai.language=="Latin")
 
 #If there was any error during the attribute call, then ai.latest_error will contain the error string, else it will be None

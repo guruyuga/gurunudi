@@ -1,6 +1,15 @@
 #!/usr/bin/env python
 
-from gurunudi import AI,api
+#***************************** SENTENCE EXTRACTION ******************************/
+#  
+#  This example shows how to extract individual sentences in a text using Gurunudi AI
+#  For example, "Mr. India was a great movie. It was directed by Shekhar Kapur."
+#  contains the sentences ["Mr. India was a great movie.", "It was directed by Shekhar Kapur."]
+#  
+#***************************** SENTENCE EXTRACTION ******************************/
+
+
+from gurunudi import AI,api,lang
 
 #First setup your API key. This needs to be done only once at the beginning in an application. 
 #Visit https://gurulaghu.com to get an API key
@@ -16,7 +25,7 @@ print(ai.sentences)
 #if ai.sentences returns None i.e. if sentences extraction API fails, then check this value for the corresponding error message
 assert(ai.latest_error==None)
 
-#By default the text is assumed to be in English language. If the text is in a different language, you can pass the corresponding language code. See example below for German text.
-ai = AI("L'India, ufficialmente Repubblica dell'India, è uno Stato federale dell'Asia meridionale, con capitale Nuova Delhi.",gurunudi.ITALIAN)
+#By default the text is assumed to be in English language. If the text is in a different language, you can pass the corresponding language code. See example below for Italian text.
+ai = AI("L'India, ufficialmente Repubblica dell'India, è uno Stato federale dell'Asia meridionale, con capitale Nuova Delhi.",lang.ITALIAN)
 
 #For the latest updated list of languages supported by Gurunudi for sentence extraction visit https://gurulaghu.com/languages/

@@ -1,6 +1,14 @@
 #!/usr/bin/env python
 
-from gurunudi import AI,api
+#***************************** SUMMARY ******************************/
+#  
+# This example shows how to generate a short summary of a large text 
+# using Gurunudi AI
+#  
+#***************************** SUMMARY ******************************/
+
+
+from gurunudi import AI,api,lang
 
 #First setup your API key. This needs to be done only once at the beginning in an application. 
 #Visit https://gurulaghu.com to get an API key
@@ -16,7 +24,7 @@ print(ai.summary)
 #if ai.summary returns None i.e. if summary API fails, then check this value for the corresponding error message
 assert(ai.latest_error==None)
 
-#By default the text is assumed to be in English language. If the text is in a different language, you can pass the corresponding language code. See example below for German text.
-ai = AI("Emmanuel Macron est le président de la France.",gurunudi.FRENCH)
+#By default the text is assumed to be in English language. If the text is in a different language, you can pass the corresponding language code. See example below for French text.
+ai = AI("Emmanuel Macron est le président de la France.",lang.FRENCH)
 
 #For the latest updated list of languages supported by Gurunudi for summary visit https://gurulaghu.com/languages/
