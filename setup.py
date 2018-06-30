@@ -6,7 +6,7 @@ from setuptools import setup
 readme=open('README.rst',encoding='utf8').read()
 
 setup(name='gurunudi',
-      version='1.1',
+      version='1.2',
       description='The official Python client for Gurunudi AI API',
       long_description=readme,
       url='http://github.com/gurulaghu/gurunudi',
