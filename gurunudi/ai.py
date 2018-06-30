@@ -2,11 +2,16 @@
 
 from .gurunudi import client,APIError
 from . import constants
+from . import lang
 
 class AI(object):
 	"""
 	Python class wrapper for Gurunudi AI methods
 	"""
+
+#	def __new__(cls, value, *args, **kwargs):
+#		# explicitly only pass value to the str constructor
+#		return super(string, cls).__new__(cls, value)
 
 	def __init__(self,text,language_code=None):
 		"""
@@ -27,7 +32,7 @@ class AI(object):
 			self.__language_code=language_code
 			self.__locale=None
 
-		if self.__language_code and self.__language_code not in languages:
+		if self.__language_code and self.__language_code not in lang.names:
 			raise APIError(ERROR_INVALID_LANGUAGE_CODE+" "+self.__language_code)
 
 		#stores the responses to different Gurunudi AI API queries by this text document
@@ -89,7 +94,7 @@ class AI(object):
 		"""
 		returns the language name for this string. If unknown, returns None
 		"""
-		return languages.get(self.language_code)
+		return lang.names.get(self.language_code)
 
 	@property
 	def language_code(self):
@@ -530,5 +535,4 @@ class AI(object):
 				key_specific_responses[additional_key]=response
 			else:
 				self.__responses[api]=response
-
 
