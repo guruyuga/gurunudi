@@ -4,7 +4,7 @@ Gurunudi AI API: Python client
 **Gurunudi** is a Python library by `GuruLaghu Technologies <https://gurulaghu.com/>`_ for accessing the `Gurunudi Artificial Intelligence API <https://www.gurunudi.com/>`_.
 Gurunudi (**AI as a Service**) provides a wide range of **Artificial Intelligence based API solutions** (See below). This client library for Gurunudi AI API is commercial open-source software, released under the MIT license.
 
-💫 **Version 0.21 out now!**
+💫 **Version 0.3 out now!**
 
 .. image:: https://img.shields.io/pypi/v/gurunudi.svg?style=flat-square
     :target: https://pypi.python.org/pypi/gurunudi
@@ -90,11 +90,16 @@ Basics
     from gurunudi import AI,api
 
     api.key='<YOUR_API_KEY>' #Set your Gurunudi API Key
-    AI("sample text")
+    ai=AI("sample text")
 
 API key needs to be setup at the beginning only once in an application. Visit `https://gurulaghu.com <https://gurulaghu.com>` to get an API key.
 
 AI is a class with simple yet intelligent attributes. Create an AI object by passing your text as the argument. AI takes a second optional argument as the language code which if not present, defaults to English (except for language detection call). The language code is a 3-letter `ISO 639-3 code <https://en.wikipedia.org/wiki/List_of_ISO_639-3_codes>`_. For language codes and features currently supported by each language, see `supported languages <https://gurulaghu.com/languages/>`_.
+
+.. code:: python
+
+    from gurunudi import lang
+    ai=AI("ಕರ್ನಾಟಕ ಕನ್ನಡ",lang.KANNADA) #Specify the language if non-English text
 
 Chatbot
 -------
@@ -103,7 +108,7 @@ Chatbot
 
     response = AI("how are you?").chat #returns a string ex: "I am fine"
     response = AI("where is Badami").chat #returns a string ex: "in Karnataka, India"
-    response = AI("do you eat cakes?").chat #returns a string ex: "softwares do not eat"
+    response = AI("do you eat cakes?").chat #returns a string ex: "software do not eat"
     response = AI("solve 3x-12=0").chat #returns a string ex: "4"
 
 
@@ -164,8 +169,8 @@ Spell Check
 
 .. code:: python
 
-    corrected_text = AI("whois that") #fixes any spelling errors and returns the corrected text
-    #now corrected_text = "who is that"
+    corrected_text = AI("whois cming tmorrow").spell_check #fixes any spelling errors and returns the corrected text
+    #now corrected_text = "who is coming tomorrow"
 
 
 Definition
@@ -181,8 +186,9 @@ Translate
 ---------
 
 .. code:: python
+    from gurunudi import lang
 
-    translation = AI("India").translate(gurunudi.GERMAN) #currently only word to word translations are supported
+    translation = AI("India").translate(lang.GERMAN) #currently only word to word translations are supported
     #now translation = ""
 
 
@@ -257,7 +263,7 @@ Dependency Parse Tree
 
 .. code:: python
 
-    dependency = AI("Indian scientists discover new planet").dependency
+    dependency = AI("Indian scientists discover new planet").syntax_tree
     #now dependency =  [{'text': 'Indian scientists discover new planet', 'dependencies': [{'dependency': 'amod', 'head': 2, 'text': 'Indian', 'index': 1}, {'dependency': 'nsubj', 'head': 3, 'text': 'scientists', 'index': 2}, {'dependency': 'ROOT', 'head': 3, 'text': 'discover', 'index': 3}, {'dependency': 'amod', 'head': 5, 'text': 'new', 'index': 4}, {'dependency': 'dobj', 'head': 3, 'text': 'planet', 'index': 5}]
 
 
