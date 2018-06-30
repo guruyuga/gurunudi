@@ -1,8 +1,9 @@
 #!/usr/bin/env python
 
 import requests
-from .constants import *
-from .config import *
+from . import constants
+from . import lang
+from . import config
 
 class Gurunudi(object):
 	"""Gurunudi API Client - calls Gurunudi AI API Service
@@ -50,55 +51,67 @@ class Gurunudi(object):
 		additional_value (string or int): if additional key present, then its value
 		"""
 
+		if self.key=='':#no API Key set?
+			raise APIError(constants.ERROR_MISSING_API_KEY)
+
 		try:
-			if DEBUG:
+			if config.DEBUG:
 				print("Call API",api_name)
 
 			#create the JSON post data for the API call
 			data=[]
 			for document in documents:
-				document_data={FIELD_TEXT:document.text}
-				if api_name!=API_DETECT_LANGUAGE: #add language code if present for calls other than detect_language
+				document_data={constants.FIELD_TEXT:document.text}
+				if api_name!=constants.API_DETECT_LANGUAGE: #add language code if present for calls other than detect_language
 					lang_code=document.language_code_if_known
 					if lang_code:
-						document_data[FIELD_LANGUAGE_CODE]=lang_code
+						document_data[constants.FIELD_LANGUAGE_CODE]=lang_code
 					else: #if language code not set, then it defaults to english
-						document_data[FIELD_LANGUAGE_CODE]=ENGLISH
+						document_data[constants.FIELD_LANGUAGE_CODE]=lang.ENGLISH
 				if additional_key:
 					document_data[additional_key]=additional_value
 				data.append(document_data)
 
-			#call the API
-			if DEBUG:
+			if config.DEBUG:
 				print("Request Data",data)
-			url = API_URL.format(api_name)
-			response = requests.post(url, json={FIELD_DOCUMENTS:data,FIELD_API_KEY:self.key}, headers=HEADERS)
 
-			#if api returned error
-			if FIELD_ERRORS in response:
-				raise APIError(' '.join(response[FIELD_ERRORS]))
-
+			#call the API
+			url = config.API_URL.format(api_name)
+			response = requests.post(url, json={constants.FIELD_DOCUMENTS:data,constants.FIELD_API_KEY:self.key}, headers=config.HEADERS)
 			json=response.json()
 
-			if DEBUG:
+
+			if config.DEBUG:
 				print("Response Code",response.status_code)
 				print("Response data",json)
 
+			#if api returned error
+			if constants.FIELD_ERRORS in json:
+				raise APIError(' '.join(json[constants.FIELD_ERRORS]))
+			elif constants.FIELD_DOCUMENTS in json:
+				if len(json[constants.FIELD_DOCUMENTS])==1:#if single document.. check if it has any error
+					doc=json[constants.FIELD_DOCUMENTS][0]
+					if api_name in doc:#some response for this api from server
+						if constants.FIELD_ERRORS in doc[api_name]:
+							raise APIError(' '.join(doc[api_name][constants.FIELD_ERRORS]))
+					else:#if no response found for this api
+						raise APIError(constants.ERROR_NO_RESPONSE)
+
+			
+
 			if response.status_code==200:#if response OK
-				if FIELD_DOCUMENTS in json:#set response to each document
-					for doc_response,document in zip(json[FIELD_DOCUMENTS],documents):
+				if constants.FIELD_DOCUMENTS in json:#set response to each document
+					for doc_response,document in zip(json[constants.FIELD_DOCUMENTS],documents):
 						for api_in_response,json_in_response in doc_response.items(): 
-							document.set_response(api_in_response,json_in_response,additional_key,additional_value)
+							document.set_response(api_in_response,json_in_response,additional_key)
 			else:
 				raise APIError("status_code_"+str(response.status_code))
 
 		except requests.exceptions.ConnectionError as ex:
-			raise APIError(ERROR_SERVER_INACCESSIBLE)
-		except Exception as ex: #exception means unable to reach the server, unless server has returned invalid json in response			
-			raise APIError(str(ex))
+			raise APIError(constants.ERROR_SERVER_INACCESSIBLE)
 
 		
 class APIError(Exception):
 	def __init__(self, message):
 		super(APIError,self).__init__(message)
-api=Gurunudi()
+client=Gurunudi()

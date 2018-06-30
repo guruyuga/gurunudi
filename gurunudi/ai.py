@@ -1,8 +1,7 @@
 #!/usr/bin/env python
 
-from .gurunudi import api,APIError
-from .constants import *
-from .language_codes import *
+from .gurunudi import client,APIError
+from . import constants
 
 class AI(object):
 	"""
@@ -41,7 +40,7 @@ class AI(object):
 		#setting this to True disables api call cache.
 		self.__disable_cache=False
 
-	@disable_cache
+	@property
 	def disable_cache(self):
 		"""
 		returns: True if api call cache has been disabled, else False
@@ -105,13 +104,13 @@ class AI(object):
 			return self.__language_code
 
 		#call Gurunudi API if not called already to guess language
-		self.__call_api(API_DETECT_LANGUAGE)
+		self.__call_api(constants.API_DETECT_LANGUAGE)
 
-		api_response=self.__responses.get(API_DETECT_LANGUAGE)
+		api_response=self.__responses.get(constants.API_DETECT_LANGUAGE)
 		if api_response:
-			languages=api_response.get(FIELD_LANGUAGES)
+			languages=api_response.get(constants.FIELD_LANGUAGES)
 			if languages and len(languages)>0:#return most probable language's code
-				return languages[0].get(FIELD_ISO3)
+				return languages[0].get(constants.FIELD_ISO3)
 
 		return None
 
@@ -122,11 +121,11 @@ class AI(object):
 		"""
 
 		#call Gurunudi API if not called already to extract sentences
-		self.__call_api(API_SENTENCE_EXTRACTION)
+		self.__call_api(constants.API_SENTENCE_EXTRACTION)
 
-		api_response=self.__responses.get(API_SENTENCE_EXTRACTION)
+		api_response=self.__responses.get(constants.API_SENTENCE_EXTRACTION)
 		if api_response:	
-			return api_response.get(FIELD_SENTENCES)
+			return api_response.get(constants.FIELD_SENTENCES)
 
 		return None
 
@@ -137,11 +136,11 @@ class AI(object):
 		"""
 
 		#call Gurunudi API if not called already to analyze sentiment
-		self.__call_api(API_SENTIMENT_ANALYSIS)
+		self.__call_api(constants.API_SENTIMENT_ANALYSIS)
 
-		api_response=self.__responses.get(API_SENTIMENT_ANALYSIS)
+		api_response=self.__responses.get(constants.API_SENTIMENT_ANALYSIS)
 		if api_response:	
-			return api_response.get(FIELD_SENTIMENT)
+			return api_response.get(constants.FIELD_SENTIMENT)
 
 		return None
 
@@ -152,11 +151,11 @@ class AI(object):
 		"""
 
 		#call Gurunudi API
-		self.__call_api(API_CHAT)
+		self.__call_api(constants.API_CHAT)
 
-		api_response=self.__responses.get(API_CHAT)
+		api_response=self.__responses.get(constants.API_CHAT)
 		if api_response:	
-			return api_response.get(FIELD_TEXT)
+			return api_response.get(constants.FIELD_TEXT)
 
 		return None
 
@@ -167,11 +166,11 @@ class AI(object):
 		"""
 
 		#call Gurunudi API if not called already to extract intent
-		self.__call_api(API_INTENT)
+		self.__call_api(constants.API_INTENT)
 
-		api_response=self.__responses.get(API_INTENT)
+		api_response=self.__responses.get(constants.API_INTENT)
 		if api_response:	
-			return api_response.get(FIELD_INTENTS)
+			return api_response.get(constants.FIELD_INTENTS)
 
 		return None
 
@@ -182,11 +181,11 @@ class AI(object):
 		"""
 
 		#call Gurunudi API if not called already to extract title
-		self.__call_api(API_TITLE)
+		self.__call_api(constants.API_TITLE)
 
-		api_response=self.__responses.get(API_TITLE)
+		api_response=self.__responses.get(constants.API_TITLE)
 		if api_response:	
-			return api_response.get(FIELD_TEXT)
+			return api_response.get(constants.FIELD_TEXT)
 
 		return None
 
@@ -197,11 +196,11 @@ class AI(object):
 		"""
 
 		#call Gurunudi API if not called already to fix case
-		self.__call_api(API_FIX_CASE)
+		self.__call_api(constants.API_FIX_CASE)
 
-		api_response=self.__responses.get(API_FIX_CASE)
+		api_response=self.__responses.get(constants.API_FIX_CASE)
 		if api_response:	
-			return api_response.get(FIELD_TEXT)
+			return api_response.get(constants.FIELD_TEXT)
 
 		return None
 
@@ -213,11 +212,11 @@ class AI(object):
 		"""
 
 		#call Gurunudi API if not called already to extract summary
-		self.__call_api(API_SUMMARY)
+		self.__call_api(constants.API_SUMMARY)
 
-		api_response=self.__responses.get(API_SUMMARY)
+		api_response=self.__responses.get(constants.API_SUMMARY)
 		if api_response:	
-			return api_response.get(FIELD_TEXT)
+			return api_response.get(constants.FIELD_TEXT)
 
 		return None
 
@@ -230,11 +229,11 @@ class AI(object):
 		"""
 
 		#call Gurunudi API if not called already to analyze sentiment
-		self.__call_api(API_COREF_RESOLUTION)
+		self.__call_api(constants.API_COREF_RESOLUTION)
 
-		api_response=self.__responses.get(API_COREF_RESOLUTION)
+		api_response=self.__responses.get(constants.API_COREF_RESOLUTION)
 		if api_response:	
-			return api_response.get(FIELD_COREFS)
+			return api_response.get(constants.FIELD_COREFS)
 
 		return None
  
@@ -248,7 +247,7 @@ class AI(object):
 		definitions = self.definitions
 
 		if definitions and len(definitions)>0:
-			return definitions[0].get(FIELD_TEXT)
+			return definitions[0].get(constants.FIELD_TEXT)
 
 		return None
 
@@ -259,11 +258,11 @@ class AI(object):
 		
 		"""
 
-		self.__call_api(API_DEFINE)
+		self.__call_api(constants.API_DEFINE)
 
-		api_response=self.__responses.get(API_DEFINE)
+		api_response=self.__responses.get(constants.API_DEFINE)
 		if api_response:	
-			return api_response.get(FIELD_DEFINITIONS)
+			return api_response.get(constants.FIELD_DEFINITIONS)
 
 		return None
 
@@ -274,11 +273,11 @@ class AI(object):
 		
 		"""
 
-		self.__call_api(API_SUMMARY)
+		self.__call_api(constants.API_SUMMARY)
 
-		api_response=self.__responses.get(API_SUMMARY)
+		api_response=self.__responses.get(constants.API_SUMMARY)
 		if api_response:	
-			return api_response.get(FIELD_TEXT)
+			return api_response.get(constants.FIELD_TEXT)
 
 		return None
 
@@ -289,11 +288,11 @@ class AI(object):
 		
 		"""
 
-		self.__call_api(API_SYNTAX_ANALYSIS)
+		self.__call_api(constants.API_SYNTAX_ANALYSIS)
 
-		api_response=self.__responses.get(API_SYNTAX_ANALYSIS)
+		api_response=self.__responses.get(constants.API_SYNTAX_ANALYSIS)
 		if api_response:	
-			return api_response.get(FIELD_SYNTAX)
+			return api_response.get(constants.FIELD_SYNTAX)
 
 		return None
 
@@ -304,11 +303,11 @@ class AI(object):
 		
 		"""
 
-		self.__call_api(API_SYNTACTIC_DEPENDENCY)
+		self.__call_api(constants.API_SYNTACTIC_DEPENDENCY)
 
-		api_response=self.__responses.get(API_SYNTACTIC_DEPENDENCY)
+		api_response=self.__responses.get(constants.API_SYNTACTIC_DEPENDENCY)
 		if api_response:	
-			return api_response.get(FIELD_SENTENCES)
+			return api_response.get(constants.FIELD_SENTENCES)
 
 		return None
 
@@ -321,13 +320,13 @@ class AI(object):
 		
 		"""
 
-		self.__call_api(API_TRANSLATE,FIELD_TARGET_LANGUAGE_CODE,target_language_code)
+		self.__call_api(constants.API_TRANSLATE,constants.FIELD_TARGET_LANGUAGE_CODE,target_language_code)
 
-		api_response=self.__responses.get(API_TRANSLATE)
+		api_response=self.__responses.get(constants.API_TRANSLATE)
 		if api_response:
 			api_response_for_target_language_code=api_response.get(target_language_code)
 			if api_response_for_target_language_code:
-				return api_response_for_target_language_code.get(FIELD_TEXT)
+				return api_response_for_target_language_code.get(constants.FIELD_TEXT)
 
 		return None
 
@@ -346,7 +345,7 @@ class AI(object):
 		for replacement in replacements:#for each piece of text to be replaced
 
 			#get start index of replacement text
-			pos=replacement[FIELD_START]			
+			pos=replacement[constants.FIELD_START]			
 
 			#add any pending text before text being replaced
 			if pos>0: 
@@ -356,7 +355,7 @@ class AI(object):
 			lst.append(replacement[target_field]) 
 
 			#move index to next char after replaced text
-			inx=replacement[FIELD_START]+len(replacement[FIELD_TEXT]) 
+			inx=replacement[constants.FIELD_START]+len(replacement[constants.FIELD_TEXT]) 
 		#add any pending last bit
 		if inx<len(text):
 			lst.append(text[inx:])
@@ -374,7 +373,7 @@ class AI(object):
 		
 		#return coreferenced text by replacing coreferences with corresponding nouns
 		if corefs:
-			return replace(corefs,FIELD_MAIN_REF)
+			return self.replace(corefs,constants.FIELD_MAIN_REF)
 
 		return None
 
@@ -385,11 +384,11 @@ class AI(object):
 		"""
 
 		#call Gurunudi API if not called already to list topics
-		self.__call_api(API_TOPIC_MODELING)
+		self.__call_api(constants.API_TOPIC_MODELING)
 
-		api_response=self.__responses.get(API_TOPIC_MODELING)
+		api_response=self.__responses.get(constants.API_TOPIC_MODELING)
 		if api_response:	
-			return api_response.get(FIELD_TOPICS)
+			return api_response.get(constants.FIELD_TOPICS)
 
 		return None
 
@@ -402,11 +401,11 @@ class AI(object):
 		"""
 
 		#call Gurunudi API if not called already to extract named entities
-		self.__call_api(API_NAMED_ENTITIES)
+		self.__call_api(constants.API_NAMED_ENTITIES)
 
-		api_response=self.__responses.get(API_NAMED_ENTITIES)
+		api_response=self.__responses.get(constants.API_NAMED_ENTITIES)
 		if api_response:	
-			return api_response.get(FIELD_ENTITIES)
+			return api_response.get(constants.FIELD_ENTITIES)
 
 		return None
 
@@ -419,11 +418,11 @@ class AI(object):
 		"""
 
 		#call Gurunudi API if not called already to check spellings
-		self.__call_api(API_SPELL_CHECK)
+		self.__call_api(constants.API_SPELL_CHECK)
 
-		api_response=self.__responses.get(API_SPELL_CHECK)
+		api_response=self.__responses.get(constants.API_SPELL_CHECK)
 		if api_response:	
-			return api_response.get(FIELD_SUGGESTIONS)
+			return api_response.get(constants.FIELD_SUGGESTIONS)
 
 		return None	
 
@@ -439,7 +438,7 @@ class AI(object):
 		
 		#return spell checked text by replacing spelling mistakes with suggestions
 		if spell_checks:
-			return replace(spell_checks,FIELD_SUGGESTION)
+			return self.replace(spell_checks,constants.FIELD_SUGGESTION)
 
 		return None		
 
@@ -451,13 +450,13 @@ class AI(object):
 		"""
 
 		#call Gurunudi API if not called already to extract keywords
-		self.__call_api(API_KEYWORD_EXTRACTION)
+		self.__call_api(constants.API_KEYWORD_EXTRACTION)
 
-		api_response=self.__responses.get(API_KEYWORD_EXTRACTION)
+		api_response=self.__responses.get(constants.API_KEYWORD_EXTRACTION)
 		if api_response:	
-			key_count = api_response.get(FIELD_KEYWORDS)
+			key_count = api_response.get(constants.FIELD_KEYWORDS)
 			if key_count:				
-				return list(key_count.keys)
+				return list(key_count.keys())
 
 		return None
 
@@ -473,11 +472,11 @@ class AI(object):
 		"""
 
 		#call Gurunudi API if not called already to extract keywords
-		self.__call_api(API_KEYWORD_EXTRACTION)
+		self.__call_api(constants.API_KEYWORD_EXTRACTION)
 
-		api_response=self.__responses.get(API_KEYWORD_EXTRACTION)
+		api_response=self.__responses.get(constants.API_KEYWORD_EXTRACTION)
 		if api_response:	
-			return api_response.get(FIELD_KEYWORDS)
+			return api_response.get(constants.FIELD_KEYWORDS)
 
 		return None			
 
@@ -489,10 +488,10 @@ class AI(object):
 		if self.__language_code:#language has been set explicitly
 			return self.__language_code
 
-		if API_DETECT_LANGUAGE in self.__responses:#if language has been guessed
-			languages=self.__responses.get(FIELD_LANGUAGES)
+		if constants.API_DETECT_LANGUAGE in self.__responses:#if language has been guessed
+			languages=self.__responses.get(constants.FIELD_LANGUAGES)
 			if languages:#return most probable language's code
-				return languages[0][FIELD_ISO3]
+				return languages[0][constants.FIELD_ISO3]
 
 		return None
 
@@ -514,24 +513,24 @@ class AI(object):
 		"""
 		calls given api if not already called for this document
 		"""
-		if api==API_CHAT or api not in self.__responses:#call API if not called already or if this is a chat
-			client.call_api(api,[self],addtional_key,addtional_value)
+		if api==constants.API_CHAT or api not in self.__responses:#call API if not called already or if this is a chat
+			client.call_api(api,[self],addtional_key,additional_value)
 		else: #if API already called
 			if addtional_key is not None:#if we have additional info for this API
 				if addtional_key not in self.__responses[api]:#if API not called for additional info ex: target language code
-					client.call_api(api,[self],addtional_key,addtional_value)
+					client.call_api(api,[self],addtional_key,additional_value)
 
 	def set_response(self,api,response,additional_key):
 		"""
 		sets the given response JSON dict to given api name
 		"""
-		if FIELD_ERRORS in response:
-			self.__latest_error = ' '.join(response[FIELD_ERRORS])
+		if constants.FIELD_ERRORS in response:
+			self.__latest_error = ' '.join(response[constants.FIELD_ERRORS])
 		else:
 			self.__latest_error=None #if successful call, reset latest error to None
 
 			if additional_key:#if api uses additional info, like translation api that needs a target language.. then cache the response at additional info level under the api name..
-				key_specific_responses=self.__responses.setdefault(api,{}):
+				key_specific_responses=self.__responses.setdefault(api,{})
 				key_specific_responses[additional_key]=response
 			else:
 				self.__responses[api]=response

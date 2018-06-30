@@ -51,8 +51,11 @@ FIELD_MAIN_REF='mainref'
 FIELD_START='start'
 FIELD_ENTRIES='entries'
 FIELD_COREFS='corefs'
-
+FIELD_DEFINITIONS='definitions'
+FIELD_TOPICS='topics'
 
 ERROR_SERVER_INACCESSIBLE="server_inaccessible"
 ERROR_INVALID_LANGUAGE_CODE="invalid_language_code"
+ERROR_MISSING_API_KEY="missing_api_key"
+ERROR_NO_RESPONSE="no_response_for_api"
 
