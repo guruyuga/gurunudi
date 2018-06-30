@@ -8,10 +8,6 @@ class AI(object):
 	Python class wrapper for Gurunudi AI methods
 	"""
 
-#	def __new__(cls, value, *args, **kwargs):
-#		# explicitly only pass value to the str constructor
-#		return super(string, cls).__new__(cls, value)
-
 	def __init__(self,text,language_code=None):
 		"""
 		text (string): document text 
