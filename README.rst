@@ -132,8 +132,8 @@ Definition
     #now definition = "the star that is the source of light and heat for the planets in the solar system"
 
 
-Fix Case
---------
+Fix Case (True Case)
+--------------------
 
 .. code:: python
 
@@ -141,8 +141,8 @@ Fix Case
     #now case_fixed_text = "Delhi is the capital of India"
 
 
-Intent
-------
+Intent Extraction
+-----------------
 
 .. code:: python
 
@@ -183,8 +183,8 @@ Language Detection
     #now language = "Kannada"
 
 
-Named Entities
---------------
+Named Entities Extraction
+-------------------------
 
 .. code:: python
 
@@ -246,8 +246,8 @@ Syntax Analysis
     #now syntax = [{'pos': 'PROPN', 'lemma': 'moon', 'text': 'Moon'}, {'pos': 'VERB', 'lemma': 'create', 'text': 'creates'}, {'pos': 'NOUN', 'lemma': 'wave', 'text': 'waves'}]
 
 
-Syntax Dependency Tree
-----------------------
+Syntax Dependency Parse Tree
+----------------------------
 
 .. code:: python
 
@@ -266,8 +266,8 @@ Title Generation
     #now title = "<TITLE_SUGGESTED_BY_GURUNUDI_AI>"
 
 
-Topics
---------
+Topic Modeling
+--------------
 
 .. code:: python
 
@@ -278,8 +278,8 @@ Topics
     #now topics = ["Business"]
 
 
-Translate
----------
+Translation
+-----------
 
 .. code:: python
 
