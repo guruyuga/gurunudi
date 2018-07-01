@@ -10,7 +10,7 @@ Gurunudi (**AI as a Service**) provides a wide range of **Artificial Intelligenc
     :target: https://pypi.python.org/pypi/gurunudi
     :alt: pypi Version
 
-.. image:: https://img.shields.io/badge/chat-join%20%E2%86%92-09a3d5.svg?style=flat-square&logo=gitter-white
+.. image:: https://badges.gitter.im/gurulaghu/gurunudi.svg
     :target: https://gitter.im/gurulaghu/gurunudi
     :alt: Gurunudi on Gitter 
 
@@ -69,10 +69,12 @@ Features of Gurunudi
 
 * Not just English, support exists for an ever growing list of **100+** `languages <https://gurulaghu.com/languages/>`
 * Pre-trained models that are continuously updated for better accuracy and to support more languages.
-* Text Analysis - Language Detection, Sentiment Analysis, Named Entities, Sentence Extraction, Syntax Analysis, Dependency Parse Tree and more 
-* Text Generation - Chatbot, Topic Modeling, Keywords Extraction, Definitions, Summarization, Title Generation, Translation and more
-* Text Modification - Co-reference Resolution, Spell Check, Case Fixing (True Case) and more
-* Knowledge Graph - available via chatbot
+* Text Classification - Language Detection, Sentiment Analysis, Text Classification and more 
+* Text Analysis - Named Entities, Sentence Extraction, Syntax Analysis, Dependency Parse Tree, Intent Extraction and more 
+* Text Generation - Chatbot, Topic Modeling, Definitions, Summarization, Title Generation, Keyword Extraction, Topic Modeling, Translation and more
+* Text Transformation - Co-reference Resolution, Fix Case (True Case), Spell Check and more
+* Knowledge Graph - available via chatbot (Definition, Attributes, Events, Lists and more)
+* Custom Trained Bots - Domain Experts, Customer Support, FAQ and more
 * More cutting edge AI features are being added continuously
 
 
