@@ -1,26 +1,27 @@
 #!/usr/bin/env python
 
-from setuptools import setup
+from setuptools import setup, PEP420PackageFinder
 
 
 readme=open('README.rst',encoding='utf8').read()
 
 setup(name='gurunudi',
-      version='1.2.1',
+      version='1.3.0',	
       description='The official Python client for Gurunudi AI API',
       long_description=readme,
       url='http://github.com/gurulaghu/gurunudi',
       author='GuruLaghu Technologies',
       author_email='gurulaghu@use.startmail.com',
-      license='MIT',
-      packages=['gurunudi'],
+      license='Apache-2.0',
+      packages=pep420_package_finder.find('.', include=['gurunudi*']),
+      keywords=["gurulaghu","gurunudi","artificial-intelligence","chatbot","nlp","nlg","nli","machine-learning","sentiment-analysis","natural-language-processing","natural-language-generation","natural-language-inference","machine-translation","autocomplete","autocorrect","spell-check","coreference-resolution","knowledge-graph","expert-system","context-qa","topic-modeling"]
       install_requires=['requests>=2.13.0'],
       classifiers=[
                 'Development Status :: 4 - Beta',
                 'Environment :: Console',
                 'Intended Audience :: Developers',
                 'Intended Audience :: Science/Research',
-                'License :: OSI Approved :: MIT License',
+                'License :: OSI Approved :: Apache License',
                 'Operating System :: POSIX :: Linux',
                 'Operating System :: MacOS :: MacOS X',
                 'Operating System :: Microsoft :: Windows',

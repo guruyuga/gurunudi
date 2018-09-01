@@ -4,11 +4,11 @@
 # https://github.com/pypa/warehouse/blob/master/warehouse/__about__.py
 
 __title__ = 'gurunudi'
-__version__ = '1.2.1'
+__version__ = '1.3.0'
 __summary__ = 'The official Python client for Gurunudi AI API'
 __uri__ = 'https://gurulaghu.com/'
 __author__ = 'GuruLaghu Technologies'
 __email__ = 'gurulaghu@use.startmail.com'
-__license__ = 'MIT'
+__license__ = 'Apache-2.0'
 __title__ = "gurunudi"
 __release__ = True
