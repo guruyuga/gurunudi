@@ -1,32 +1,25 @@
 #!/usr/bin/env python
 
-#***************************** DEFINE ************************************************/
+from __future__ import division, print_function, absolute_import
+
+#***************************** DEFINITIONS ************************************/
 #  
-#  This example shows how to get definitions of names, words or phrases using Gurunudi AI
+#  This example shows how to query Gurunudi to get definitions of a word or noun
 #  
-#***************************** DEFINE ************************************************/
+#***************************** DEFINITIONS ************************************/
 
+from gurunudi import AI,lang
 
-from gurunudi import AI,api,lang
+#AI is the wrapper class to call Gurunudi AI API
 
-#First setup your API key. This needs to be done only once at the beginning in an application. 
-#Visit https://gurulaghu.com to get an API key
-api.key="<YOUR_GURUNUDI_API_KEY>" 
+ai = AI()
 
-#AI is a class with simple yet intelligent attributes. Create an AI object by passing your document text as the argument to the constructor.
-ai = AI("apple")
+response = ai.define("Emmanuel Macron")
+print(response)
 
-#The AI attribute "definition" returns a definition for the given text when the text is a noun or word or a meaningful phrase
-print(ai.definition)
+#if language other than English, then specify
+response = ai.define("Emmanuel Macron",lang.FRENCH)
+print(response)
 
-#The AI attribute "definitions" returns a list of all definitions for the given text when the text is a noun or word or a meaningful phrase
-print(ai.definitions)
+#For the latest updated list of languages supported by Gurunudi for Definitions visit https://gurulaghu.com/languages/
 
-#If there was any error during the attribute call, then ai.latest_error will contain the error string, else it will be None
-#if ai.definition returns None i.e. if definition API fails, then check this value for the corresponding error message
-assert(ai.latest_error==None)
-
-#By default the text is assumed to be in English language. If the text is in a different language, you can pass the corresponding language code. See example below for French text.
-ai = AI("Emmanuel Macron est le président de la France.",lang.FRENCH)
-
-#For the latest updated list of languages supported by Gurunudi for definition visit https://gurulaghu.com/languages/

@@ -1,31 +1,25 @@
 #!/usr/bin/env python
 
-#************************************* CO-REFERENCE RESOLUTION ************************************/
+from __future__ import division, print_function, absolute_import
+
+#***************************** CO-REFERENCE RESOLUTION ************************************/
 #  
-#  This example shows how to resolve co-references in a text using Gurunudi AI
-#  For example: In the text "Delhi is in India. It is a big city.", the pronoun "It" refers to "Delhi"
-#  So after resolving co-referneces, the text would become "Delhi is in India. Delhi is a big city."
+#  This example shows how to query Gurunudi to resolve coreferences in a text
 #  
-#************************************* CO-REFERENCE RESOLUTION ************************************/
+#***************************** COREFERENCE RESOLUTION ************************************/
 
+from gurunudi import AI,lang
 
-from gurunudi import AI,api,lang
+#AI is the wrapper class to call Gurunudi AI API
 
-#First setup your API key. This needs to be done only once at the beginning in an application. 
-#Visit https://gurulaghu.com to get an API key
-api.key="<YOUR_GURUNUDI_API_KEY>" 
+ai = AI()
 
-#AI is a class with simple yet intelligent attributes. Create an AI object by passing your document text as the argument to the constructor.
-ai = AI("The women stopped taking pills because they were pregnant.")
+response = ai.coref("The women stopped taking pills because they were pregnant.")
+print(response)
 
-#The AI attribute "coreferenced_text" returns coreference resolved version of the original text
-assert(ai.coreferenced_text=="The women stopped taking pills because the women were pregnant.")
+#if language other than English, then specify
+response = ai.coref("L'India, ufficialmente Repubblica dell'India, è uno Stato federale dell'Asia meridionale, con capitale Nuova Delhi.",lang.ITALIAN)
+print(response)
 
-#If there was any error during the attribute call, then ai.latest_error will contain the error string, else it will be None
-#if ai.coreferenced_text returns None i.e. if coreference resolution API fails, then check this value for the corresponding error message
-assert(ai.latest_error==None)
+#For the latest updated list of languages supported by Gurunudi for Coref Resolution visit https://gurulaghu.com/languages/
 
-#By default the text is assumed to be in English language. If the text is in a different language, you can pass the corresponding language code. See example below for Italian text.
-ai = AI("L'India, ufficialmente Repubblica dell'India, è uno Stato federale dell'Asia meridionale, con capitale Nuova Delhi.",lang.ITALIAN)
-
-#For the latest updated list of languages supported by Gurunudi for co-reference resolution visit https://gurulaghu.com/languages/
