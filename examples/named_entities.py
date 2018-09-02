@@ -1,32 +1,23 @@
 #!/usr/bin/env python
 
-#************************************************ NAMED ENTITIES *******************************************/
+from __future__ import division, print_function, absolute_import
+
+#***************************** NAMED ENTITIES RECOGNITION ************************************/
 #  
-#  This example shows how to extract named entities in a text using Gurunudi AI
-#  For example, "Larry Page studied at Stanford University in 1996" has the named entities
-#  [{"text":"Larry Page","label":"PERSON"},{"text":"Stanford University","label":"ORG"},{"text":"1996","label":"DATE"}]
+#  This example shows how to query Gurunudi to extract named entities in a text
 #  
-#************************************************ NAMED ENTITIES *******************************************/
+#***************************** NAMED ENTITIES RECOGNITION ************************************/
 
+from gurunudi import AI,lang
 
-from gurunudi import AI,api,lang
+#AI is the wrapper class to call Gurunudi AI API
+ai = AI()
 
-#First setup your API key. This needs to be done only once at the beginning in an application. 
-#Visit https://gurulaghu.com to get an API key
-api.key="<YOUR_GURUNUDI_API_KEY>" 
+response = ai.named_entities("Larry Page was doing his Phd at Stanford University in 1996.")
+print(response)
+ 
+response = ai.named_entities("Emmanuel Macron est le président de la France.",lang.FRENCH)
+print(response)
 
-#AI is a class with simple yet intelligent attributes. Create an AI object by passing your document text as the argument to the constructor.
-ai = AI("Larry Page was doing his Phd at Stanford University in 1996.")
+#For the latest updated list of languages supported by Gurunudi for named entities recognition visit https://gurulaghu.com/languages/
 
-#The AI attribute "named_entities" returns a list of named entities found in the text
-#Each entry in the list is a dictionary containing a named entity's text, its label and its position in the original text
-print(ai.named_entities)
-
-#If there was any error during the attribute call, then ai.latest_error will contain the error string, else it will be None
-#if ai.named_entities returns None i.e. if named entities extraction API fails, then check this value for the corresponding error message
-assert(ai.latest_error==None)
-
-#By default the text is assumed to be in English language. If the text is in a different language, you can pass the corresponding language code. See example below for French text.
-ai = AI("Emmanuel Macron est le président de la France.",lang.FRENCH)
-
-#For the latest updated list of languages supported by Gurunudi for named entities extraction visit https://gurulaghu.com/languages/

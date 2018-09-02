@@ -11,7 +11,6 @@ from __future__ import division, print_function, absolute_import
 from gurunudi import AI,lang
 
 #AI is the wrapper class to call Gurunudi AI API
-
 ai = AI()
 
 response = ai.keywords("India is a country in South Asia. It shares land borders with Pakistan to the west; China, Nepal, and Bhutan to the northeast; and Myanmar (Burma) and Bangladesh to the east.")

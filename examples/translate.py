@@ -1,30 +1,23 @@
 #!/usr/bin/env python
 
-#**************************************** TRANSLATION ***********************************/
+from __future__ import division, print_function, absolute_import
+
+#***************************** TRANSLATION *******************************************/
 #  
-# This example shows how to translate text from one language to another using Gurunudi AI
+#  This example shows how to query Gurunudi to translate a given text from one language to another
 #  
-#**************************************** TRANSLATION ***********************************/
+#***************************** TRANSLATION *********************************************/
 
+from gurunudi import AI,lang
 
-from gurunudi import AI,api,lang
+#AI is the wrapper class to call Gurunudi AI API
+ai=AI()
 
-#First setup your API key. This needs to be done only once at the beginning in an application. 
-#Visit https://gurulaghu.com to get an API key
-api.key="<YOUR_GURUNUDI_API_KEY>" 
+#translation requires target language and source language to be specified
+response = ai.translate("India is the only country to have an ocean named after it.",lang.SPANISH,lang.ENGLISH)
+print(response)
 
-#AI is a class with simple yet intelligent attributes. Create an AI object by passing your document text as the argument to the constructor.
-ai = AI("India is the only country to have an ocean named after it.")
-
-#The AI function "translate" returns translated text of the given text to a destination language
-translation = ai.translate(lang.SPANISH)
-print(translation)
-
-#If there was any error during the attribute call, then ai.latest_error will contain the error string, else it will be None
-#if ai.translate returns None i.e. if translation API fails, then check this value for the corresponding error message
-assert(ai.latest_error==None)
-
-#By default the text is assumed to be in English language. If the text is in a different language, you can pass the corresponding language code. See example below for French text.
-ai = AI("Emmanuel Macron est le président de la France.",lang.FRENCH)
+response = ai.translate("Emmanuel Macron est le président de la France.",lang.ENGLISH,lang.FRENCH)
+print(response)
 
 #For the latest updated list of languages supported by Gurunudi for translation visit https://gurulaghu.com/languages/

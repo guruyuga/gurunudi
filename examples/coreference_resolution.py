@@ -11,14 +11,13 @@ from __future__ import division, print_function, absolute_import
 from gurunudi import AI,lang
 
 #AI is the wrapper class to call Gurunudi AI API
-
 ai = AI()
 
 response = ai.coref("The women stopped taking pills because they were pregnant.")
 print(response)
 
 #if language other than English, then specify
-response = ai.coref("L'India, ufficialmente Repubblica dell'India, è uno Stato federale dell'Asia meridionale, con capitale Nuova Delhi.",lang.ITALIAN)
+response = ai.coref("Les femmes ont cessé de prendre des pilules parce qu'elles étaient enceintes.",lang.FRENCH)
 print(response)
 
 #For the latest updated list of languages supported by Gurunudi for Coref Resolution visit https://gurulaghu.com/languages/

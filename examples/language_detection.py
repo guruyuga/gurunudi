@@ -11,13 +11,12 @@ from __future__ import division, print_function, absolute_import
 from gurunudi import AI,lang
 
 #AI is the wrapper class to call Gurunudi AI API
-
 ai = AI()
 
 response = ai.language("lorem ipsum")
 print(response)
  
-response = ai.language("matter tells space how to curve and space tells matter how to move").language
+response = ai.language("matter tells space how to curve and space tells matter how to move")
 print(response)
 
 response = ai.language("ನನ್ನ ಹೆಸರು ಗುರು")

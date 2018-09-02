@@ -11,7 +11,6 @@ from __future__ import division, print_function, absolute_import
 from gurunudi import AI,lang
 
 #AI is the wrapper class to call Gurunudi AI API
-
 ai = AI()
 
 response = ai.intent("Larry Page was doing his Phd at Stanford University in 1996.")

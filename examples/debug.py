@@ -8,7 +8,7 @@ from __future__ import division, print_function, absolute_import
 #  
 #***************************** DEFINITIONS ************************************/
 
-from gurunudi import AI,lang
+from gurunudi import AI,lang,config
 
 #AI is the wrapper class to call Gurunudi AI API
 
