@@ -7,7 +7,6 @@ from . import constants
 from . import lang
 from . import config
 
-
 class AI(object):
 	"""
 	Python class wrapper for Gurunudi AI methods
@@ -21,17 +20,17 @@ class AI(object):
 
 		"""
 
-		return self.__call_api(constants.API_AUTOCORRECT,{FIELD_TEXT:text})
+		return self.__call_api(constants.API_AUTOCORRECT,{constants.FIELD_TEXT:text,constants.FIELD_LANG:lang})
 
 	def autocomplete(self,text,lang=lang.ENGLISH):
 		"""
 		text (string): The text that has to be autocompleted
 		lang (string): ISO3 language code of the text
-		returns: attempts to autocomplete text
+		returns: autocompleted text
 
 		"""
 
-		return self.__call_api(constants.API_AUTOCOMPLETE,{FIELD_TEXT:text})
+		return self.__call_api(constants.API_AUTOCOMPLETE,{constants.FIELD_TEXT:text,constants.FIELD_LANG:lang})
 
 
 	def chat(self,text,lang=lang.ENGLISH):
@@ -41,7 +40,7 @@ class AI(object):
 		returns: chat response to the text - ideal for chatbots
 		"""
  
-		return self.__call_api(constants.API_CHAT,{FIELD_TEXT:text})
+		return self.__call_api(constants.API_CHAT,{constants.FIELD_TEXT:text,constants.FIELD_LANG:lang})
 
  
 	def contextqa(self,context,text,lang=lang.ENGLISH):
@@ -53,7 +52,7 @@ class AI(object):
 
 		"""
 
-		return self.__call_api(constants.API_KEYWORDS,{FIELD_TEXT:text})
+		return self.__call_api(constants.API_CONTEXTQA,{constants.FIELD_TEXT:text,constants.FIELD_LANG:lang,constants.FIELD_CONTEXT:context})
 
 
 	def coref(self,text,lang=lang.ENGLISH):
@@ -64,7 +63,7 @@ class AI(object):
 		
 		"""
 
-		return self.__call_api(constants.API_COREF,{FIELD_TEXT:text})
+		return self.__call_api(constants.API_COREF,{constants.FIELD_TEXT:text,constants.FIELD_LANG:lang})
 
 	def define(self,text,lang=lang.ENGLISH):
 		"""
@@ -74,7 +73,7 @@ class AI(object):
 		
 		"""
 
-		return self.__call_api(constants.API_DEFINE,{FIELD_TEXT:text})
+		return self.__call_api(constants.API_DEFINE,{constants.FIELD_TEXT:text,constants.FIELD_LANG:lang})
  
 
 	def dependency(self,text,lang=lang.ENGLISH):
@@ -85,7 +84,7 @@ class AI(object):
 		
 		"""
 
-		return self.__call_api(constants.API_DEPENDENCY,{FIELD_TEXT:text})
+		return self.__call_api(constants.API_DEPENDENCY,{constants.FIELD_TEXT:text,constants.FIELD_LANG:lang})
 
 
 	def fix_case(self,text,lang=lang.ENGLISH):
@@ -95,7 +94,7 @@ class AI(object):
 		returns: text after fixing any incorrect case issues in it
 		"""
 
-		return self.__call_api(constants.API_FIX_CASE,{FIELD_TEXT:text})
+		return self.__call_api(constants.API_FIX_CASE,{constants.FIELD_TEXT:text,constants.FIELD_LANG:lang})
 
 	def intent(self,text,lang=lang.ENGLISH):
 		"""
@@ -104,18 +103,18 @@ class AI(object):
 		returns: intent of the text
 		"""
  
-		return self.__call_api(constants.API_INTENT,{FIELD_TEXT:text})
+		return self.__call_api(constants.API_INTENT,{constants.FIELD_TEXT:text,constants.FIELD_LANG:lang})
  
 
 	def keywords(self,text,lang=lang.ENGLISH):
 		"""
-		text (string): The text that has to be answered in given context
-		lang (string): ISO3 language code of context and text
+		text (string): The text to find keywords
+		lang (string): ISO3 language code of the text
 		returns: a list of keywords in the text			
 
 		"""
 
-		return self.__call_api(constants.API_KEYWORDS,{FIELD_TEXT:text})
+		return self.__call_api(constants.API_KEYWORDS,{constants.FIELD_TEXT:text,constants.FIELD_LANG:lang})
 
 
 	def knowledge(self,text,lang=lang.ENGLISH):
@@ -125,7 +124,7 @@ class AI(object):
 		returns: answer from Gurunudi Knowledge Graph
 		"""
  
-		return self.__call_api(constants.API_KNOWLEDGE,{FIELD_TEXT:text})
+		return self.__call_api(constants.API_KNOWLEDGE,{constants.FIELD_TEXT:text,constants.FIELD_LANG:lang})
  
 
 	def language(self,text):
@@ -133,7 +132,7 @@ class AI(object):
 		text (string): The text whose language has to be found
 		returns dict containing language name, ISO1 and ISO3 codes of the language
 		"""
-		return self.__call_api(constants.API_LANGUAGE,{FIELD_TEXT:text})
+		return self.__call_api(constants.API_LANGUAGE,{constants.FIELD_TEXT:text})
 
   
 	def named_entities(self,text,lang=lang.ENGLISH):
@@ -144,7 +143,7 @@ class AI(object):
 		{"text":<entity_text>,"start":<entity_start_index>,"label":<entity_label>}
 		"""
 
-		return self.__call_api(constants.API_NAMED_ENTITIES,{FIELD_TEXT:text})
+		return self.__call_api(constants.API_NAMED_ENTITIES,{constants.FIELD_TEXT:text,constants.FIELD_LANG:lang})
 
 
 	def sentences(self,text,lang=lang.ENGLISH):
@@ -154,7 +153,7 @@ class AI(object):
 		returns: sentences in the text
 		"""
  
-		return self.__call_api(constants.API_SENTENCE_EXTRACTION,{FIELD_TEXT:text})
+		return self.__call_api(constants.API_SENTENCES,{constants.FIELD_TEXT:text,constants.FIELD_LANG:lang})
 
 
 	def sentiment(self,text,lang=lang.ENGLISH):
@@ -164,7 +163,7 @@ class AI(object):
 		returns: sentiment of the text
 		"""
  
-		return self.__call_api(constants.API_SENTIMENT_ANALYSIS,{FIELD_TEXT:text})
+		return self.__call_api(constants.API_SENTIMENT,{constants.FIELD_TEXT:text,constants.FIELD_LANG:lang})
 
 
 	def summary(self,text,lang=lang.ENGLISH):
@@ -175,7 +174,7 @@ class AI(object):
 		"""
 
 		#call Gurunudi API to extract summary
-		return self.__call_api(constants.API_SUMMARY,{FIELD_TEXT:text})
+		return self.__call_api(constants.API_SUMMARY,{constants.FIELD_TEXT:text,constants.FIELD_LANG:lang})
  
  
 	def syntax(self,text,lang=lang.ENGLISH):
@@ -187,7 +186,7 @@ class AI(object):
 		
 		"""
 
-		return self.__call_api(constants.API_SYNTAX,{FIELD_TEXT:text})
+		return self.__call_api(constants.API_SYNTAX,{constants.FIELD_TEXT:text,constants.FIELD_LANG:lang})
 
 	def title(self,text,lang=lang.ENGLISH):
 		"""
@@ -196,7 +195,7 @@ class AI(object):
 		returns: an appropriate title for a large text like a news article or blog
 		"""
  
-		return self.__call_api(constants.API_TITLE,{FIELD_TEXT:text})
+		return self.__call_api(constants.API_TITLE,{constants.FIELD_TEXT:text,constants.FIELD_LANG:lang})
 
 
 	def topics(self,text,lang=lang.ENGLISH):
@@ -206,19 +205,28 @@ class AI(object):
 		returns: list of topics of the text
 		"""
 
-		return self.__call_api(constants.API_TOPICS,{FIELD_TEXT:text})
+		return self.__call_api(constants.API_TOPICS,{constants.FIELD_TEXT:text,constants.FIELD_LANG:lang})
+
+	def nlg(self,intent,lang=lang.ENGLISH):
+		"""
+		intent (dict): The intent for which natural language text has to be generated
+		lang (string): ISO3 language code of the language in which the text has to be generated
+		returns: natural language text
+		"""
+
+		return self.__call_api(constants.API_NLG,{constants.FIELD_TEXT:text,constants.FIELD_LANG:lang})
 		
 
-	def translate(self,text,src_lang,target_lang):
+	def translate(self,text,target_lang,src_lang):
 		"""
 		text (string): The text that has to be translated
+		target_language (string): ISO3 language code of the target language to which text has to be translated 
 		src_lang (string): ISO3 language code of the text
-		target_language: ISO3 language code of the target language to which text has to be translated 
-		returns: translated text if translation was successful, else returns None
+		returns: translated text if translation was successful, else returns empty text
 		
 		"""
 
-		return self.__call_api(constants.API_COREF,{FIELD_TEXT:text})
+		return self.__call_api(constants.API_TRANSLATE,{constants.FIELD_TEXT:text,constants.FIELD_LANG:src_lang,constants.FIELD_TARGET_LANG:target_lang})
 
  
 	def __call_api(self,api,data):
@@ -231,11 +239,11 @@ class AI(object):
 
 		try:
 			if config.DEBUG:
-				print("Call API",api_name)
-		 		print("Request Data",data)
+				print("Call API",api)
+				print("Request Data",data)
 
 			#call the API
-			url = config.API_URL.format(api_name)
+			url = config.API_URL.format(api)
 			response = requests.post(url, json=data, headers=config.HEADERS)
 			json=response.json()
 
@@ -248,11 +256,12 @@ class AI(object):
 				raise APIError(json[constants.FIELD_ERROR])
 
 			if response.status_code==200:#if response OK
-				if len(json)==1:#if response has only one field, then it is a "text" field or a list field. Return it as is
-					for value in json.values():
-						return value
-				else:#if response has multiple fields, then return the entire dict
-					return json
+				if constants.FIELD_TEXT in json:#if response is plain text
+					return json[constants.FIELD_TEXT]
+				if constants.FIELD_LIST in json:#if response is a list
+					return json[constants.FIELD_LIST]
+				#neither text response nor list response, indicating this is a dict response. So return it as is
+				return json
 			else:
 				raise APIError("status_code_"+str(response.status_code))
 
@@ -265,4 +274,5 @@ class AI(object):
 class APIError(Exception):
 	def __init__(self, message):
 		super(APIError,self).__init__(message)
+
 
