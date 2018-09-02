@@ -4,7 +4,7 @@ Gurunudi AI API: Python client
 **Gurunudi** is a Python library by `GuruLaghu Technologies <https://gurulaghu.com/>`_ for accessing the `Gurunudi Artificial Intelligence API <https://www.gurunudi.com/>`_.
 Gurunudi (**AI as a Service**) provides a wide range of **Artificial Intelligence based API solutions** (See below). This client library for Gurunudi AI API is commercial open-source software, released under the MIT license.
 
-💫 **Version 1.3.1 out now!**
+💫 **Version 1.3.2 out now!**
 
 .. image:: https://img.shields.io/pypi/v/gurunudi.svg?style=flat-square
     :target: https://pypi.python.org/pypi/gurunudi
@@ -273,7 +273,7 @@ This is the exact opposite process of intent extraction api listed above. This t
 
 
 Natural Language Inference (NLI)
--------------------------------
+--------------------------------
 
 Attempts to find all possible inferences that can be drawn from a given natural language text.
 
