@@ -9,6 +9,6 @@ __summary__ = 'The official Python client for Gurunudi AI API'
 __uri__ = 'https://gurulaghu.com/'
 __author__ = 'GuruLaghu Technologies'
 __email__ = 'gurulaghu@use.startmail.com'
-__license__ = 'Apache-2.0'
+__license__ = 'MIT License'
 __title__ = "gurunudi"
 __release__ = True
