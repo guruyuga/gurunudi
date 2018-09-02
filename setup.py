@@ -2,7 +2,7 @@
 
 from setuptools import setup, PEP420PackageFinder
 
-
+pep420_package_finder = PEP420PackageFinder()
 readme=open('README.rst',encoding='utf8').read()
 
 setup(name='gurunudi',
@@ -14,7 +14,7 @@ setup(name='gurunudi',
       author_email='gurulaghu@use.startmail.com',
       license='Apache-2.0',
       packages=pep420_package_finder.find('.', include=['gurunudi*']),
-      keywords=["gurulaghu","gurunudi","artificial-intelligence","chatbot","nlp","nlg","nli","machine-learning","sentiment-analysis","natural-language-processing","natural-language-generation","natural-language-inference","machine-translation","autocomplete","autocorrect","spell-check","coreference-resolution","knowledge-graph","expert-system","context-qa","topic-modeling"]
+      keywords=["gurulaghu","gurunudi","artificial-intelligence","chatbot","nlp","nlg","nli","machine-learning","sentiment-analysis","natural-language-processing","natural-language-generation","natural-language-inference","machine-translation","autocomplete","autocorrect","spell-check","coreference-resolution","knowledge-graph","expert-system","context-qa","topic-modeling"],
       install_requires=['requests>=2.13.0'],
       classifiers=[
                 'Development Status :: 4 - Beta',

@@ -86,7 +86,7 @@ Basics
 
 .. code:: python
 
-    from gurunudi import AI
+    from gurunudi import AI,lang
 
     ai=AI()
 
@@ -100,15 +100,22 @@ AI is a class that abstracts API calls to Gurunudi AI System. Create an AI objec
 Autocorrect / Spell Check
 -------------------------
 
+Attempts to automatically fix any spelling errors which includes misspelled words, mixed up words.
+
 .. code:: python
 
-    corrected_text = ai.autocorrect("whois cming tmorrow")
-    #now corrected_text = "who is coming tomorrow"
+    corrected_text = ai.autocorrect("who is the primem inister of idnia")
+    #now corrected_text = "who is the prime minister of india"
 
-
+    #English is the default language for all API calls (except langauge detection API that has no language parameter as input). 
+    #So, if your input text is in a language other than english, you can specify the language as the second argument. See example below. This applies to all AI API calls.
+    corrected_text = ai.autocorrect("Les femes ont cessé de prndre des piluls parce qu'elles étaient encintes.",lang.FRENCH)
+    #now corrected_text = "Les femmes ont cessé de prendre des pilules parce qu'elles étaient enceintes."
 
 Autocomplete
 -------------------------
+
+Attempts to automatically complete the given sentence to the nearest meaningful sentence.
 
 .. code:: python
 
@@ -118,6 +125,8 @@ Autocomplete
 
 Chatbot
 -------
+
+General purpose chatbot which makes use of all other Gurunudi AI apis to have general conversation as well as answer knowledge based queries
 
 .. code:: python
 
@@ -129,6 +138,8 @@ Chatbot
 
 Co-reference Resolution
 -----------------------
+
+Attempts to resolve co-referenes in a text (like pronouns) to their corresponding nouns.
 
 .. code:: python
 
@@ -142,6 +153,8 @@ Co-reference Resolution
 Context QA
 ----------
 
+Attempts to answer a question based on a given context text.
+
 .. code:: python
 
     answer = ai.contextqa('GuruLaghu Technologies is a technology company specializing in the field of Artificial Intelligence. It is based out of Bengaluru, India. Its motto is, "AI to the last man". Gurudev Rao is the founder and CEO of GuruLaghu. He is also the developer of Gurunudi.',"who is the developer of Gurunudi") 
@@ -150,6 +163,8 @@ Context QA
 
 Definition
 ----------
+
+Given a word or a noun, provides its definition.
 
 .. code:: python
 
@@ -160,6 +175,8 @@ Definition
 Fix Case (True Case)
 --------------------
 
+Attempts to fix the case for case sensitive language scripts like English to generate true cased sentencete.
+
 .. code:: python
 
     case_fixed_text = ai.fix_case("delhi is the capital of iNdia")
@@ -169,13 +186,16 @@ Fix Case (True Case)
 Intent Extraction
 -----------------
 
+Attempts to extract structured intent from a natural language sentence. The intent can be then processed by your app to take further actions. Helpful for custom chatbots.
+This is the exact opposite process of natural language generation (NLG) api listed below. This takes natural language text as input and gives intent as output.
+
 .. code:: python
 
     intent = ai.intent("hi")
     #returns "[{"intent":"greeting"}]"
 
     intent = ai.intent("Delhi is in India")
-    #returns [{"intent":"statement","theme":"Delhi","attribute":"location","value",:"India","tense":"present"}]
+    #returns [{"intent":"statement","theme":"Delhi","attribute":"location","value":"India","tense":"present"}]
 
     intent = ai.intent("John went to Chicago")
     #returns [{"intent":"statement","agent":"John","action":"go","destination",:"Chicago","tense":"past"}]
@@ -190,6 +210,8 @@ Intent Extraction
 Keyword Extraction
 ------------------
 
+Extracts important keywords from given text. The keywords are ordered in the descending order of significance in relation to the given text.
+
 .. code:: python
 
     keywords = ai.keywords("Delhi is in India")
@@ -199,6 +221,8 @@ Keyword Extraction
 Knowledge
 ------------------
 
+Attempts to answer simple knowledge based queries using Gurunudi Knowledge Graph.
+
 .. code:: python
 
     answer = ai.knowledge("capital of india")
@@ -207,6 +231,8 @@ Knowledge
 
 Language Detection
 ------------------
+
+Identifies the language of a given text. Can also differentiate between Chinese, Korean and Japanese texts.
 
 .. code:: python
 
@@ -220,14 +246,47 @@ Language Detection
 Named Entities Extraction
 -------------------------
 
+Extracts named entities from a given text.
+
 .. code:: python
 
     named_entities = ai.named_entities("India is in Asia") #returns a list of named entities, their labels and position in the text
     #now named_entities = [{"label": "GPE", "end": 5, "start": 0, "name": "India"}, {"label": "LOC", "end": 16, "start": 12, "name": "Asia"}]
 
 
+Natural Language Generation (NLG)
+---------------------------------
+
+Generates natural language text based on a given intent.
+This is the exact opposite process of intent extraction api listed above. This takes intent as input and gives natural language text as output.
+
+.. code:: python
+
+    text = ai.nlg({"theme":"Delhi","attribute":"location","value":"India"}) 
+    #now text = "Delhi is in India."
+
+    text = ai.nlg({"theme":"Delhi","attribute":"location","value":"India","intent":"query"}) 
+    #now text = "Is Delhi in India?"
+
+    text = ai.nlg({"theme":"Delhi","attribute":"location","value":"India","intent":"query","tense":"past"}) 
+    #now text = "Was Delhi in India?"
+
+
+Natural Language Inference (NLI)
+-------------------------------
+
+Attempts to find all possible inferences that can be drawn from a given natural language text.
+
+.. code:: python
+
+    text = ai.nli("New Delhi is the capital city of India") 
+    #now text = "New Delhi is a city. New Delhi is in India. India has a capital city. New Delhi is a location. New Delhi is an administrative territory. India is a location. India is an administrative territory. New Delhi is a capital city."
+
+
 Sentence Extraction
 -------------------
+
+Extracts individual sentences from a given text.
 
 .. code:: python
 
@@ -237,6 +296,8 @@ Sentence Extraction
 
 Sentiment Analysis
 ------------------
+
+Analyzes the sentiment of a given text.
 
 .. code:: python
 
@@ -256,14 +317,18 @@ Sentiment Analysis
 Summary Generation
 ------------------
 
+Generates a short summary of a long text.
+
 .. code:: python
 
     summary = ai.summary("<SOME_LONG_TEXT>")
     #now summary = <summary_of_the_long_text>
 
 
-Syntax Analysis
----------------
+Syntax Analysis (Natural Language Processing)
+---------------------------------------------
+
+Tokenizes the text and generates parts of speech (POS) tags including other details like lemma
 
 .. code:: python
 
@@ -274,6 +339,8 @@ Syntax Analysis
 Syntax Dependency Parse Tree
 ----------------------------
 
+Tokenizes the text and generates a syntax dependency parse tree.
+
 .. code:: python
 
     syntax_tree = ai.dependency("Moon creates waves")
@@ -282,6 +349,8 @@ Syntax Dependency Parse Tree
 
 Title Generation
 ----------------
+
+Attempts to suggest a title for a given long text like an article or a document.
 
 .. code:: python
 
@@ -293,6 +362,8 @@ Title Generation
 
 Topic Modeling
 --------------
+
+Attempts to identify a list of topics that can be associated with a given text
 
 .. code:: python
 
@@ -306,9 +377,12 @@ Topic Modeling
 Translation
 -----------
 
+Attempts to translate text from one language to another.
+
 .. code:: python
 
     from gurunudi import lang
 
-    translation = ai.translate("India",lang.ENGLISH,lang.GERMAN)
-    #now translation = "Indien"
+    #arguments are source text to be translated, target language, source language
+    translation = ai.translate("New Delhi is the capital of India",lang.GERMAN,lang.ENGLISH)
+    #now translation = "Neu-Delhi ist die Hauptstadt von Indien"
