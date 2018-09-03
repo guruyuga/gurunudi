@@ -4,7 +4,7 @@ Gurunudi AI API: Python client
 **Gurunudi** is a Python library by `GuruLaghu Technologies <https://gurulaghu.com/>`_ for accessing the `Gurunudi Artificial Intelligence API <https://www.gurunudi.com/>`_.
 Gurunudi (**AI as a Service**) provides a wide range of **Artificial Intelligence based API solutions** (See below). This client library for Gurunudi AI API is commercial open-source software, released under the MIT license.
 
-💫 **Version 1.3.2 out now!**
+💫 **Version 1.3.4 out now!**
 
 .. image:: https://img.shields.io/pypi/v/gurunudi.svg?style=flat-square
     :target: https://pypi.python.org/pypi/gurunudi
@@ -70,10 +70,10 @@ Features of Gurunudi
 * Not just English, support exists for an ever growing list of **100+** `languages <https://gurulaghu.com/languages/>`
 * Pre-trained models that are continuously updated for better accuracy and to support more languages.
 * Text Classification - Language Detection, Sentiment Analysis, Topic Modeling, Text Classification and more 
-* Text Analysis - Named Entities, Sentence Extraction, Syntax Analysis, Dependency Parse Tree, Keyword Extraction, Intent Extraction and more 
-* Text Generation - Chatbot, Summarization, Title Generation, Translation and more
+* Text Analysis - NLP tasks like Named Entities, Sentence Extraction, Syntax Analysis, Dependency Parse Tree, Keyword Extraction, Intent Extraction
+* Text Generation - Chatbot, Summarization, Title Generation, Translation, Natural Language Generation (NLG) and more
 * Text Transformation - Co-reference Resolution, Fix Case (True Case), Spell Check and more
-* Knowledge Graph - Definition and Knowledge queries
+* Knowledge Graph - Definition, Natural Language Query (NLQ), Natural Language Inference (NLI)
 * Custom Trained Bots - Domain Experts, Customer Support, FAQ and more
 * More cutting edge AI features are being added continuously
 
@@ -186,8 +186,10 @@ Attempts to fix the case for case sensitive language scripts like English to gen
 Intent Extraction
 -----------------
 
-Attempts to extract structured intent from a natural language sentence. The intent can be then processed by your app to take further actions. Helpful for custom chatbots.
-This is the exact opposite process of natural language generation (NLG) api listed below. This takes natural language text as input and gives intent as output.
+Attempts to extract Structured Intent from a natural language sentence. The intent can be then processed by your app to take further actions. Helpful for custom chatbots.
+This is the exact opposite process of natural language generation (NLG) API listed below. This takes natural language text as input and gives intent as output.
+
+The Structured Intent format is the same for output of Intent Extraction API, input of Knowledge Graph Query API and input of Natural Language Generation API.
 
 .. code:: python
 
@@ -218,15 +220,20 @@ Extracts important keywords from given text. The keywords are ordered in the des
     #now keywords = ['India', 'Delhi']
 
 
-Knowledge
-------------------
+Knowledge Graph Query
+---------------------
 
-Attempts to answer simple knowledge based queries using Gurunudi Knowledge Graph.
+Query the Gurunudi Knowledge Graph using Structured Intent. 
+The Structured Intent format is the same for output of Intent Extraction API, input of Knowledge Graph Query API and input of Natural Language Generation API.
 
 .. code:: python
 
-    answer = ai.knowledge("capital of india")
-    #now answer = "New Delhi"
+    answer = ai.graph_query({"theme":"India","attribute":"capital","value":"?"})
+    #now answer = {"theme":"India","attribute":"capital","value":"New Delhi"}
+
+    #if language other than English, then specify
+    answer = ai.graph_query({"theme":"Inde","attribute":"capitale","value":"?"},lang.FRENCH)
+    #now answer = {"theme":"Inde","attribute":"capitale","value":"New Delhi"}
 
 
 Language Detection
@@ -257,18 +264,18 @@ Extracts named entities from a given text.
 Natural Language Generation (NLG)
 ---------------------------------
 
-Generates natural language text based on a given intent.
-This is the exact opposite process of intent extraction api listed above. This takes intent as input and gives natural language text as output.
+This API takes Structured Intent as input and gives natural language text as output. This is the exact opposite process of intent extraction API described above. 
+The Structured Intent format is the same for output of Intent Extraction API, input of Knowledge Graph Query API and input of Natural Language Generation API.
 
 .. code:: python
 
-    text = ai.nlg({"theme":"Delhi","attribute":"location","value":"India"}) 
+    text = ai.generate({"theme":"Delhi","attribute":"location","value":"India"}) 
     #now text = "Delhi is in India."
 
-    text = ai.nlg({"theme":"Delhi","attribute":"location","value":"India","intent":"query"}) 
+    text = ai.generate({"theme":"Delhi","attribute":"location","value":"India","intent":"query"}) 
     #now text = "Is Delhi in India?"
 
-    text = ai.nlg({"theme":"Delhi","attribute":"location","value":"India","intent":"query","tense":"past"}) 
+    text = ai.generate({"theme":"Delhi","attribute":"location","value":"India","intent":"query","tense":"past"}) 
     #now text = "Was Delhi in India?"
 
 
@@ -279,9 +286,31 @@ Attempts to find all possible inferences that can be drawn from a given natural 
 
 .. code:: python
 
-    text = ai.nli("New Delhi is the capital city of India") 
-    #now text = "New Delhi is a city. New Delhi is in India. India has a capital city. New Delhi is a location. New Delhi is an administrative territory. India is a location. India is an administrative territory. New Delhi is a capital city."
+    list = ai.inferences("New Delhi is the capital city of India") 
+    #now list = ["New Delhi is a city.","New Delhi is in India.","India has a capital city.","New Delhi is a location.","New Delhi is an administrative territory.","India is a location.","India is an administrative territory.","New Delhi is a capital city."]
 
+
+Natural Language Processing (NLP)
+---------------------------------
+
+Is a combination of sentence extraction + parts of speech tagging + syntax dependency tree parsing + named entity recognition
+The returned value is a list where each entry in the list corresponds to a sentence in the given text and is a dict containing the sentence text and the NLP data of the sentence.
+
+.. code:: python
+
+    data = ai.nlp("capital of India")
+    #now data = [{"text":"capital of India","nlp":[{"index":0,"tag":"NN","head":0,"lemma":"capital","text":"capital","dep":"ROOT","pos":"NOUN"},{"index":1,"tag":"IN","head":0,"lemma":"of","text":"of","dep":"prep","pos":"ADP"},{"index":2,"tag":"NNP","head":1,"lemma":"india","text":"India","dep":"pobj","pos":"PROPN"}],"named_entities":[{"label":"GPE","text":"India","start":11}]}]
+
+
+Natural Language Query (NLQ)
+----------------------------
+
+Attempts to answer simple queries in natural language using Gurunudi Knowledge Graph.
+
+.. code:: python
+
+    answer = ai.query("what is Tiramisu")
+    #now answer = "coffee-flavoured Italian dessert"
 
 Sentence Extraction
 -------------------
@@ -333,7 +362,7 @@ Tokenizes the text and generates parts of speech (POS) tags including other deta
 .. code:: python
 
     syntax = ai.syntax("Moon creates waves")
-    #now syntax = [{'pos': 'PROPN', 'lemma': 'moon', 'text': 'Moon'}, {'pos': 'VERB', 'lemma': 'create', 'text': 'creates'}, {'pos': 'NOUN', 'lemma': 'wave', 'text': 'waves'}]
+    #now syntax = [{"index":0,"tag":"NNP","text":"Moon","lemma":"moon","pos":"PROPN"},{"index":1,"tag":"VBZ","text":"creates","lemma":"create","pos":"VERB"},{"index":2,"tag":"NNS","text":"waves","lemma":"wave","pos":"NOUN"}]
 
 
 Syntax Dependency Parse Tree
@@ -344,7 +373,7 @@ Tokenizes the text and generates a syntax dependency parse tree.
 .. code:: python
 
     syntax_tree = ai.dependency("Moon creates waves")
-    #now syntax_tree = [{'head': 1, 'dep': 'nsubj', 'text': 'Moon'}, {'head': 1, 'dep': 'ROOT', 'text': 'creates'}, {'head': 1, 'dep': 'dobj', 'text': 'waves'}]
+    #now syntax_tree = [{"dep":"nsubj","text":"Moon","head":1,"index":0},{"dep":"ROOT","text":"creates","head":1,"index":1},{"dep":"dobj","text":"waves","head":1,"index":2}]
 
 
 Title Generation
