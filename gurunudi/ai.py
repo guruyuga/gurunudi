@@ -12,6 +12,14 @@ class AI(object):
 	Python class wrapper for Gurunudi AI methods
 	"""
 
+
+	def __init__(self,version=1):
+		"""
+		version (int): The API version to be used while querying Gurunudi Server
+
+		"""
+		self.version='v'+str(version)
+
 	def autocorrect(self,text,lang=lang.ENGLISH):
 		"""
 		text (string): The text that has to be autocorrected
@@ -117,16 +125,6 @@ class AI(object):
 		return self.__call_api(constants.API_KEYWORDS,{constants.FIELD_TEXT:text,constants.FIELD_LANG:lang})
 
 
-	def knowledge(self,text,lang=lang.ENGLISH):
-		"""
-		text (string): The knowledge query whose answer has to be fetched
-		lang (string): ISO3 language code of the text
-		returns: answer from Gurunudi Knowledge Graph
-		"""
- 
-		return self.__call_api(constants.API_KNOWLEDGE,{constants.FIELD_TEXT:text,constants.FIELD_LANG:lang})
- 
-
 	def language(self,text):
 		"""
 		text (string): The text whose language has to be found
@@ -135,6 +133,33 @@ class AI(object):
 		return self.__call_api(constants.API_LANGUAGE,{constants.FIELD_TEXT:text})
 
   
+	def generate(self,intent,lang=lang.ENGLISH):
+		"""
+		intent (dict): The intent for which natural language text has to be generated
+		lang (string): ISO3 language code of the language in which the text has to be generated
+		returns: natural language text
+		"""
+
+		return self.__call_api(constants.API_NLG,{constants.FIELD_TEXT:intent,constants.FIELD_LANG:lang})
+
+	def graph_query(self,data,lang=lang.ENGLISH):
+		"""
+		data (string): The structured info to query the Gurunudi Knowledge Graph
+		lang (string): ISO3 language code of the query data
+		returns: answer from Gurunudi Knowledge Graph
+		"""
+ 
+		return self.__call_api(constants.API_GRAPH_QUERY,{constants.FIELD_TEXT:data,constants.FIELD_LANG:lang})
+
+	def inferences(self,text,lang=lang.ENGLISH):
+		"""
+		text (string): The text to be infered
+		lang (string): ISO3 language code of the language in which the text has to be infered
+		returns: list of inferences
+		"""
+
+		return self.__call_api(constants.API_NLI,{constants.FIELD_TEXT:text,constants.FIELD_LANG:lang})
+
 	def named_entities(self,text,lang=lang.ENGLISH):
 		"""
 		text (string): The text to find named entities in
@@ -145,6 +170,23 @@ class AI(object):
 
 		return self.__call_api(constants.API_NAMED_ENTITIES,{constants.FIELD_TEXT:text,constants.FIELD_LANG:lang})
 
+	def nlp(self,text,lang=lang.ENGLISH):
+		"""
+		text (string): The text to be processed
+		lang (string): ISO3 language code of the language in which the text has to be processed
+		returns: list of NLP data for each sentence in the text
+		"""
+
+		return self.__call_api(constants.API_NLP,{constants.FIELD_TEXT:text,constants.FIELD_LANG:lang})
+
+	def query(self,text,lang=lang.ENGLISH):
+		"""
+		text (string): The natural language query whose answer has to be fetched
+		lang (string): ISO3 language code of the text
+		returns: answer from Gurunudi Knowledge Graph
+		"""
+ 
+		return self.__call_api(constants.API_QUERY,{constants.FIELD_TEXT:text,constants.FIELD_LANG:lang})
 
 	def sentences(self,text,lang=lang.ENGLISH):
 		"""
@@ -207,15 +249,6 @@ class AI(object):
 
 		return self.__call_api(constants.API_TOPICS,{constants.FIELD_TEXT:text,constants.FIELD_LANG:lang})
 
-	def nlg(self,intent,lang=lang.ENGLISH):
-		"""
-		intent (dict): The intent for which natural language text has to be generated
-		lang (string): ISO3 language code of the language in which the text has to be generated
-		returns: natural language text
-		"""
-
-		return self.__call_api(constants.API_NLG,{constants.FIELD_TEXT:text,constants.FIELD_LANG:lang})
-		
 
 	def translate(self,text,target_lang,src_lang):
 		"""
@@ -243,7 +276,7 @@ class AI(object):
 				print("Request Data",data)
 
 			#call the API
-			url = config.API_URL.format(api)
+			url = config.API_URL.format(self.version,api)
 			response = requests.post(url, json=data, headers=config.HEADERS)
 			json=response.json()
 
