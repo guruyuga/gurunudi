@@ -6,9 +6,18 @@ Gurunudi (**AI as a Service**) provides a wide range of **Artificial Intelligenc
 
 💫 **Version 1.3.4 out now!**
 
-.. image:: https://img.shields.io/pypi/v/gurunudi.svg?style=flat-square
+.. image:: https://img.shields.io/pypi/pyversions/ansicolortags.svg
+
+.. image:: https://img.shields.io/pypi/v/gurunudi.svg
     :target: https://pypi.python.org/pypi/gurunudi
     :alt: pypi Version
+    
+.. image:: https://img.shields.io/badge/License-MIT-yellow.svg
+    :target: https://github.com/gurulaghu/gurunudi/blob/master/LICENSE
+    :alt: MIT License
+    
+.. image:: https://img.shields.io/github/issues/gurulaghu/gurunudi.svg    
+    :alt: GitHub issues
 
 .. image:: https://badges.gitter.im/gurulaghu/gurunudi.svg
     :target: https://gitter.im/gurulaghu/gurunudi
@@ -16,7 +25,7 @@ Gurunudi (**AI as a Service**) provides a wide range of **Artificial Intelligenc
 
 .. image:: https://img.shields.io/twitter/follow/gurunudi.svg?style=social&label=Follow
     :target: https://twitter.com/gurunudi
-    :alt: gurunudi on Twitter
+    :alt: Gurunudi on Twitter
 
 📖 Installation
 ================
