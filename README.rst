@@ -249,6 +249,9 @@ Identifies the language of a given text. Can also differentiate between Chinese,
     language = ai.language("ನನ್ನ ಹೆಸರು ಗುರು")
     #now language = {"iso1":"kn","iso3":"kan","language":"Kannada"}
 
+    language = ai.lang_name("ನನ್ನ ಹೆಸರು ಗುರು")
+    #now language = "Kannada"
+
 
 Named Entities Extraction
 -------------------------
