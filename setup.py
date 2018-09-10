@@ -6,7 +6,7 @@ pep420_package_finder = PEP420PackageFinder()
 readme=open('README.rst',encoding='utf8').read()
 
 setup(name='gurunudi',
-      version='1.3.4',	
+      version='1.3.7',	
       description='The official Python client for Gurunudi AI API',
       long_description=readme,
       url='http://github.com/gurulaghu/gurunudi',
