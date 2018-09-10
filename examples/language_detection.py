@@ -16,6 +16,9 @@ ai = AI()
 response = ai.language("lorem ipsum")
 print(response)
  
+response = ai.language_name("lorem ipsum")
+print(response)
+ 
 response = ai.language("matter tells space how to curve and space tells matter how to move")
 print(response)
 
