@@ -10,6 +10,7 @@ API_SENTIMENT		='sentiment'			#analyzes the sentiment of a text document
 API_COREF		='coref'			#resolves co-references in a text document
 API_NAMED_ENTITIES	='named_entities'		#extracts named-entities in a text document
 API_CHAT		='chat'				#real time conversation and knowledge q&a - ideal for chatbots
+API_CLASSIFY		='classify'			#returns classification labels for given text using given model
 API_DEFINE		='define'			#returns definition of word or noun or phrase
 API_CONTEXTQA		='contextqa'			#answers based on given context
 API_FIX_CASE		='fixcase'			#returns text after fixing any incorrect case issues
@@ -37,6 +38,7 @@ FIELD_CONTEXT='context'
 FIELD_TEXT="text"
 FIELD_ERROR="error"
 FIELD_LIST="list"
+FIELD_MODEL="model"
 
 ERROR_SERVER_INACCESSIBLE="server_inaccessible"
 ERROR_INVALID_LANGUAGE_CODE="invalid_language_code" 

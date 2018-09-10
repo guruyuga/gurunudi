@@ -7,6 +7,7 @@ from . import constants
 from . import lang
 from . import config
 
+
 class AI(object):
 	"""
 	Python class wrapper for Gurunudi AI methods
@@ -51,6 +52,18 @@ class AI(object):
 		return self.__call_api(constants.API_CHAT,{constants.FIELD_TEXT:text,constants.FIELD_LANG:lang})
 
  
+	def classify(self,text,model,lang=lang.ENGLISH):
+		"""
+		text (string): The text that has to be answered in given context
+		model (string): The classification model to be used
+		lang (string): ISO3 language code of context and text
+		returns: response to text based on given context
+
+		"""
+
+		return self.__call_api(constants.API_CLASSIFY,{constants.FIELD_TEXT:text,constants.FIELD_LANG:lang,constants.FIELD_MODEL:model})
+
+
 	def contextqa(self,context,text,lang=lang.ENGLISH):
 		"""
 		context (string): The context in which the text has to be answered
@@ -131,6 +144,15 @@ class AI(object):
 		returns dict containing language name, ISO1 and ISO3 codes of the language
 		"""
 		return self.__call_api(constants.API_LANGUAGE,{constants.FIELD_TEXT:text})
+
+  
+	def lang_name(self,text):
+		"""
+		text (string): The text whose language has to be found
+		returns language name
+		"""
+		lang_data = self.language(text)
+		return lang_data.get("language","")
 
   
 	def generate(self,intent,lang=lang.ENGLISH):
