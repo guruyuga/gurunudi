@@ -302,17 +302,6 @@ Attempts to answer simple queries in natural language using Gurunudi Knowledge G
     answer = ai.query("what is Tiramisu")
     #now answer = "coffee-flavoured Italian dessert"
 
-Sentence Extraction
--------------------
-
-Extracts individual sentences from a given text.
-
-.. code:: python
-
-    sentences = ai.sentences("Mr. India was a great movie. It was directed by Shekhar Kapur.")
-    #now sentences = ["Mr. India was a great movie.", "It was directed by Shekhar Kapur."]
-
-
 Sentiment Analysis
 ------------------
 
