@@ -356,29 +356,6 @@ Generates a short summary of a long text.
     summary = ai.summary("<SOME_LONG_TEXT>")
     #now summary = <summary_of_the_long_text>
 
-
-Syntax Analysis (Natural Language Processing)
----------------------------------------------
-
-Tokenizes the text and generates parts of speech (POS) tags including other details like lemma
-
-.. code:: python
-
-    syntax = ai.syntax("Moon creates waves")
-    #now syntax = [{"index":0,"tag":"NNP","text":"Moon","lemma":"moon","pos":"PROPN"},{"index":1,"tag":"VBZ","text":"creates","lemma":"create","pos":"VERB"},{"index":2,"tag":"NNS","text":"waves","lemma":"wave","pos":"NOUN"}]
-
-
-Syntax Dependency Parse Tree
-----------------------------
-
-Tokenizes the text and generates a syntax dependency parse tree.
-
-.. code:: python
-
-    syntax_tree = ai.dependency("Moon creates waves")
-    #now syntax_tree = [{"dep":"nsubj","text":"Moon","head":1,"index":0},{"dep":"ROOT","text":"creates","head":1,"index":1},{"dep":"dobj","text":"waves","head":1,"index":2}]
-
-
 Text Classification
 -------------------
 
