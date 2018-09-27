@@ -70,7 +70,7 @@ Features of Gurunudi
 * Not just English, support exists for an ever growing list of **100+** `languages <https://gurulaghu.com/languages/>`
 * Pre-trained models that are continuously updated for better accuracy and to support more languages.
 * Text Classification - Language Detection, Sentiment Analysis, Topic Modeling, Text Classification and more 
-* Text Analysis - NLP tasks like Named Entities, Sentence Extraction, Syntax Analysis, Dependency Parse Tree, Keyword Extraction, Intent Extraction
+* Text Analysis - NLP tasks like Named Entities, Keyword Extraction, Intent Extraction
 * Text Generation - Chatbot, Summarization, Title Generation, Translation, Natural Language Generation (NLG) and more
 * Text Transformation - Co-reference Resolution, Fix Case (True Case), Spell Check and more
 * Knowledge Graph - Definition, Natural Language Query (NLQ), Natural Language Inference (NLI)
@@ -291,19 +291,6 @@ Attempts to find all possible inferences that can be drawn from a given natural 
 
     list = ai.inferences("New Delhi is the capital city of India") 
     #now list = ["New Delhi is a city.","New Delhi is in India.","India has a capital city.","New Delhi is a location.","New Delhi is an administrative territory.","India is a location.","India is an administrative territory.","New Delhi is a capital city."]
-
-
-Natural Language Processing (NLP)
----------------------------------
-
-Is a combination of sentence extraction + parts of speech tagging + syntax dependency tree parsing + named entity recognition
-The returned value is a list where each entry in the list corresponds to a sentence in the given text and is a dict containing the sentence text and the NLP data of the sentence.
-
-.. code:: python
-
-    data = ai.nlp("capital of India")
-    #now data = [{"text":"capital of India","nlp":[{"index":0,"tag":"NN","head":0,"lemma":"capital","text":"capital","dep":"ROOT","pos":"NOUN"},{"index":1,"tag":"IN","head":0,"lemma":"of","text":"of","dep":"prep","pos":"ADP"},{"index":2,"tag":"NNP","head":1,"lemma":"india","text":"India","dep":"pobj","pos":"PROPN"}],"named_entities":[{"label":"GPE","text":"India","start":11}]}]
-
 
 Natural Language Query (NLQ)
 ----------------------------
