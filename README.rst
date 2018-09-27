@@ -150,17 +150,6 @@ Attempts to resolve co-referenes in a text (like pronouns) to their correspondin
     #now coreferenced_text = "The women stopped taking pills because the women were pregnant"
 
 
-Context QA
-----------
-
-Attempts to answer a question based on a given context text.
-
-.. code:: python
-
-    answer = ai.contextqa('GuruLaghu Technologies is a technology company specializing in the field of Artificial Intelligence. It is based out of Bengaluru, India. Its motto is, "AI to the last man". Gurudev Rao is the founder and CEO of GuruLaghu. He is also the developer of Gurunudi.',"who is the developer of Gurunudi") 
-    #now answer="Gurudev Rao"
-
-
 Definition
 ----------
 
