@@ -32,7 +32,7 @@ response = ai.classify("that movie was really bad","sentiment")
 print(response)
 
 
-#For the latest updated list of languages supported by Gurunudi for text classification visit https://gurulaghu.com/languages/
+#For the latest updated list of languages supported by Gurunudi for text classification visit https://guruyuga.com/languages/
 
 
 
