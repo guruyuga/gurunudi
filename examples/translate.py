@@ -20,4 +20,4 @@ print(response)
 response = ai.translate("Emmanuel Macron est le président de la France.",lang.ENGLISH,lang.FRENCH)
 print(response)
 
-#For the latest updated list of languages supported by Gurunudi for translation visit https://gurulaghu.com/languages/
+#For the latest updated list of languages supported by Gurunudi for translation visit https://guruyuga.com/languages/
