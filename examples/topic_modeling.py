@@ -20,4 +20,4 @@ print(response)
 response = ai.topics("L'India, ufficialmente Repubblica dell'India, è uno Stato federale dell'Asia meridionale, con capitale Nuova Delhi.",lang.ITALIAN)
 print(response)
 
-#For the latest updated list of languages supported by Gurunudi for topic modeling visit https://gurulaghu.com/languages/
+#For the latest updated list of languages supported by Gurunudi for topic modeling visit https://guruyuga.com/languages/
