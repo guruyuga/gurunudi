@@ -20,4 +20,4 @@ print(response)
 response = ai.autocomplete("Emmanuel Macron est le président de la.",lang.FRENCH)
 print(response)
 
-#For the latest updated list of languages supported by Gurunudi for autocomplete visit https://gurulaghu.com/languages/
+#For the latest updated list of languages supported by Gurunudi for autocomplete visit https://guruyuga.com/languages/
