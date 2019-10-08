@@ -16,5 +16,5 @@ ai = AI()
 response = ai.generate({"theme":"Delhi","attribute":"location","value":"India"})
 print(response)
 
-#For the latest updated list of languages supported by Gurunudi for natural language generation visit https://gurulaghu.com/languages/
+#For the latest updated list of languages supported by Gurunudi for natural language generation visit https://guruyuga.com/languages/
 
