@@ -22,4 +22,4 @@ response=ai.chat('qui a écrit anna Karenina?',lang.FRENCH)
 print(response)
 
 
-#For the latest updated list of languages supported by Gurunudi for chat visit https://gurulaghu.com/languages/
+#For the latest updated list of languages supported by Gurunudi for chat visit https://guruyuga.com/languages/
