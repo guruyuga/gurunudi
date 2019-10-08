@@ -10,7 +10,7 @@ from . import config
 
 class AI(object):
 	"""
-	Python class wrapper for Gurunudi AI methods
+	Python class wrapper for Gurunudi AI methods - uses POST method, but GET is also supported by server for testing purposes or quick usage.
 	"""
 
 
