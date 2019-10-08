@@ -25,7 +25,7 @@ print(response)
 response = ai.language("ನನ್ನ ಹೆಸರು ಗುರು")
 print(response)
 
-#For the latest updated list of languages supported by Gurunudi for language detection visit https://gurulaghu.com/languages/
+#For the latest updated list of languages supported by Gurunudi for language detection visit https://guruyuga.com/languages/
 
 
 
