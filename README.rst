@@ -11,7 +11,7 @@ Gurunudi (**AI as a Service**) provides a wide range of **Artificial Intelligenc
     :alt: pypi Version
 
 .. image:: https://badges.gitter.im/guruyuga/gurunudi.svg
-    :target: https://gitter.im/gurunudi
+    :target: https://gitter.im/guruyuga/gurunudi
     :alt: Gurunudi on Gitter 
 
 .. image:: https://img.shields.io/twitter/follow/gurunudi.svg?style=social&label=Follow
