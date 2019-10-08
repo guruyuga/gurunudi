@@ -20,4 +20,4 @@ print(response)
 response = ai.title("Emmanuel Macron est le président de la France.",lang.FRENCH)
 print(response)
 
-#For the latest updated list of languages supported by Gurunudi for title generation visit https://gurulaghu.com/languages/
+#For the latest updated list of languages supported by Gurunudi for title generation visit https://guruyuga.com/languages/
