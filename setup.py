@@ -6,15 +6,15 @@ pep420_package_finder = PEP420PackageFinder()
 readme=open('README.rst',encoding='utf8').read()
 
 setup(name='gurunudi',
-      version='1.3.7',	
+      version='1.3.8',	
       description='The official Python client for Gurunudi AI API',
       long_description=readme,
-      url='http://github.com/gurulaghu/gurunudi',
-      author='GuruLaghu Technologies',
-      author_email='gurulaghu@use.startmail.com',
+      url='http://github.com/guruyuga/gurunudi',
+      author='GuruYuga Technologies',
+      author_email='guruyuga@use.startmail.com',
       license='Apache-2.0',
       packages=pep420_package_finder.find('.', include=['gurunudi*']),
-      keywords=["gurulaghu","gurunudi","artificial-intelligence","chatbot","nlp","nlg","nli","machine-learning","sentiment-analysis","natural-language-processing","natural-language-generation","natural-language-inference","machine-translation","autocomplete","autocorrect","spell-check","coreference-resolution","knowledge-graph","expert-system","context-qa","topic-modeling"],
+      keywords=["guruyuga","gurunudi","artificial-intelligence","chatbot","nlp","nlg","nli","machine-learning","sentiment-analysis","natural-language-processing","natural-language-generation","natural-language-inference","machine-translation","autocomplete","autocorrect","spell-check","coreference-resolution","knowledge-graph","expert-system","context-qa","topic-modeling"],
       install_requires=['requests>=2.13.0'],
       classifiers=[
                 'Development Status :: 4 - Beta',
