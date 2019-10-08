@@ -24,4 +24,4 @@ print(response)
 response = ai.autocorrect("Les femes ont cessé de prndre des piluls parce qu'elles étaient encintes.",lang.FRENCH)
 print(response)
 
-#For the latest updated list of languages supported by Gurunudi for autocorrection visit https://gurulaghu.com/languages/
+#For the latest updated list of languages supported by Gurunudi for autocorrection visit https://guruyuga.com/languages/
