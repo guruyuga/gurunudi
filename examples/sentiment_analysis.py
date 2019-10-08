@@ -29,4 +29,4 @@ print(response)
 response = ai.sentiment("Aller Anfang ist schwer",lang.GERMAN)
 print(response)
 
-#For the latest updated list of languages supported by Gurunudi for sentiment analysis visit https://gurulaghu.com/languages/
+#For the latest updated list of languages supported by Gurunudi for sentiment analysis visit https://guruyuga.com/languages/
