@@ -20,4 +20,4 @@ print(response)
 response = ai.intent("Larry Page promovierte 1996 an der Stanford University.",lang.GERMAN)
 print(response)
 
-#For the latest updated list of languages supported by Gurunudi for Definitions visit https://gurulaghu.com/languages/
+#For the latest updated list of languages supported by Gurunudi for Definitions visit https://guruyuga.com/languages/
