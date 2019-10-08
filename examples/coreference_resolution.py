@@ -20,5 +20,5 @@ print(response)
 response = ai.coref("Les femmes ont cessé de prendre des pilules parce qu'elles étaient enceintes.",lang.FRENCH)
 print(response)
 
-#For the latest updated list of languages supported by Gurunudi for Coref Resolution visit https://gurulaghu.com/languages/
+#For the latest updated list of languages supported by Gurunudi for Coref Resolution visit https://guruyuga.com/languages/
 
