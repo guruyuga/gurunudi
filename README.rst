@@ -1,17 +1,17 @@
 Gurunudi AI API: Python client
 ******************************
 
-**Gurunudi** is a Python library by `GuruLaghu Technologies <https://gurulaghu.com/>`_ for accessing the `Gurunudi Artificial Intelligence API <https://www.gurunudi.com/>`_.
+**Gurunudi** is a Python library by `GuruYuga <https://guruyuga.com/>`_ for accessing the `Gurunudi Artificial Intelligence API <https://www.gurunudi.com/>`_.
 Gurunudi (**AI as a Service**) provides a wide range of **Artificial Intelligence based API solutions** (See below). This client library for Gurunudi AI API is commercial open-source software, released under the MIT license.
 
-💫 **Version 1.3.7 out now!**
+💫 **Version 1.3.8 out now!**
 
 .. image:: https://img.shields.io/pypi/v/gurunudi.svg?style=flat-square
     :target: https://pypi.python.org/pypi/gurunudi
     :alt: pypi Version
 
-.. image:: https://badges.gitter.im/gurulaghu/gurunudi.svg
-    :target: https://gitter.im/gurulaghu/gurunudi
+.. image:: https://badges.gitter.im/guruyuga/gurunudi.svg
+    :target: https://gitter.im/guruyuga/gurunudi
     :alt: Gurunudi on Gitter 
 
 .. image:: https://img.shields.io/twitter/follow/gurunudi.svg?style=social&label=Follow
@@ -23,7 +23,7 @@ Gurunudi (**AI as a Service**) provides a wide range of **Artificial Intelligenc
 
 ==================== ===
 **Operating system** macOS / OS X, Linux, Windows
-**Python version**   2+
+**Python version**   2+, 3+
 **Package managers** `pip <https://pypi.python.org/pypi/gurunudi>`_
 ==================== ===
 
@@ -60,17 +60,17 @@ The Gurunudi project is maintained by `@gurudevrao <https://github.com/gurudevra
 **General Discussion** `Gitter Chat`_
 ====================== ===
 
-.. _GitHub Issue Tracker: https://github.com/gurulaghu/gurunudi/issues
+.. _GitHub Issue Tracker: https://github.com/guruyuga/gurunudi/issues
 .. _StackOverflow: http://stackoverflow.com/questions/tagged/gurunudi
-.. _Gitter Chat: https://gitter.im/gurulaghu/gurunudi
+.. _Gitter Chat: https://gitter.im/guruyuga/gurunudi
 
 Features of Gurunudi
 ====================
 
-* Not just English, support exists for an ever growing list of **100+** `languages <https://gurulaghu.com/languages/>`
+* Not just English, support exists for an ever growing list of **100+** `languages <https://guruyuga.com/languages/>`
 * Pre-trained models that are continuously updated for better accuracy and to support more languages.
 * Text Classification - Language Detection, Sentiment Analysis, Topic Modeling, Text Classification and more 
-* Text Analysis - NLP tasks like Named Entities, Keyword Extraction, Intent Extraction
+* Text Analysis - NLP tasks like Named Entities, Sentence Extraction, Keyword Extraction, Intent Extraction
 * Text Generation - Chatbot, Summarization, Title Generation, Translation, Natural Language Generation (NLG) and more
 * Text Transformation - Co-reference Resolution, Fix Case (True Case), Spell Check and more
 * Knowledge Graph - Definition, Natural Language Query (NLQ), Natural Language Inference (NLI)
@@ -90,7 +90,7 @@ Basics
 
     ai=AI()
 
-AI is a class that abstracts API calls to Gurunudi AI System. Create an AI object as shown above. Except for language detection API call, all other text based API calls take an additional optional argument as the language code which if not present, defaults to English (except for language detection call). The language code is a 3-letter `ISO 639-3 code <https://en.wikipedia.org/wiki/List_of_ISO_639-3_codes>`_. For language codes and features currently supported by each language, see `supported languages <https://gurulaghu.com/languages/>`_.
+AI is a class that abstracts API calls to Gurunudi AI System. Create an AI object as shown above. Except for language detection API call, all other text based API calls take an additional optional argument as the language code which if not present, defaults to English (except for language detection call). The language code is a 3-letter `ISO 639-3 code <https://en.wikipedia.org/wiki/List_of_ISO_639-3_codes>`_. For language codes and features currently supported by each language, see `supported languages <https://guruyuga.com/languages/>`_.
 
 .. code:: python
 
@@ -281,6 +281,7 @@ Attempts to find all possible inferences that can be drawn from a given natural 
     list = ai.inferences("New Delhi is the capital city of India") 
     #now list = ["New Delhi is a city.","New Delhi is in India.","India has a capital city.","New Delhi is a location.","New Delhi is an administrative territory.","India is a location.","India is an administrative territory.","New Delhi is a capital city."]
 
+
 Natural Language Query (NLQ)
 ----------------------------
 
@@ -290,6 +291,17 @@ Attempts to answer simple queries in natural language using Gurunudi Knowledge G
 
     answer = ai.query("what is Tiramisu")
     #now answer = "coffee-flavoured Italian dessert"
+
+Sentence Extraction
+-------------------
+
+Extracts individual sentences from a given text.
+
+.. code:: python
+
+    sentences = ai.sentences("Mr. India was a great movie. It was directed by Shekhar Kapur.")
+    #now sentences = ["Mr. India was a great movie.", "It was directed by Shekhar Kapur."]
+
 
 Sentiment Analysis
 ------------------
@@ -320,6 +332,7 @@ Generates a short summary of a long text.
 
     summary = ai.summary("<SOME_LONG_TEXT>")
     #now summary = <summary_of_the_long_text>
+
 
 Text Classification
 -------------------
