@@ -20,4 +20,4 @@ print(response)
 response = ai.fix_case("emmanuel macron est le président de LA France",lang.FRENCH)
 print(response)
 
-#For the latest updated list of languages supported by Gurunudi for Case Fixing to generate True Case text visit https://gurulaghu.com/languages/
+#For the latest updated list of languages supported by Gurunudi for Case Fixing to generate True Case text visit https://guruyuga.com/languages/
