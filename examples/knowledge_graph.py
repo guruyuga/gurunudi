@@ -23,4 +23,4 @@ response=ai.graph_query({"theme":"Inde","attribute":"capitale","value":"?"},lang
 print(response)
 
 
-#For the latest updated list of languages supported by Gurunudi for knowledge graph query visit https://gurulaghu.com/languages/
+#For the latest updated list of languages supported by Gurunudi for knowledge graph query visit https://guruyuga.com/languages/
