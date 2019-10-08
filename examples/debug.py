@@ -4,7 +4,7 @@ from __future__ import division, print_function, absolute_import
 
 #***************************** DEFINITIONS ************************************/
 #  
-#  This example shows how to query Gurunudi to get definitions of a word or noun
+#  This example shows how to debug responses from Gurunudi
 #  
 #***************************** DEFINITIONS ************************************/
 
