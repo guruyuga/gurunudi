@@ -20,5 +20,5 @@ print(response)
 response = ai.define("Emmanuel Macron",lang.FRENCH)
 print(response)
 
-#For the latest updated list of languages supported by Gurunudi for Definitions visit https://gurulaghu.com/languages/
+#For the latest updated list of languages supported by Gurunudi for Definitions visit https://guruyuga.com/languages/
 
