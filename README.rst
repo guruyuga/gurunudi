@@ -119,10 +119,80 @@ Attempts to automatically complete the given sentence to the nearest meaningful 
 
 .. code:: python
 
-    completed_text = ai.autocomplete("which is the fas")
-    #now completed_text = "which is the fastest car"
+    options = ai.autocomplete("capital of in")
+    #now options = ['Capital of Indonesia', 'Capital of Indiana', 'Capital of india', 'Capital of New Zealand', 'Capital of England', 'Capital of Singapore', 'Capital of Italy', 'Capital of Israel', 'Capital of Ireland', 'Capital of Ontario']
 
 
+Keyword Extraction
+------------------
+
+Extracts important keywords from given text. The keywords are ordered in the descending order of significance in relation to the given text.
+
+.. code:: python
+
+    keywords = ai.keywords("Delhi is in India")
+    #now keywords = ['India', 'Delhi']
+
+
+Language Detection
+------------------
+
+Identifies the language of a given text. Can also differentiate between Chinese, Korean and Japanese texts.
+
+.. code:: python
+
+    language = ai.language("lorem ipsum")
+    #now language = {"iso1":"la","iso3":"lat","language":"Latin"}
+
+    language = ai.language("ನನ್ನ ಹೆಸರು ಗುರು")
+    #now language = {"iso1":"kn","iso3":"kan","language":"Kannada"}
+
+    language = ai.lang_name("ನನ್ನ ಹೆಸರು ಗುರು")
+    #now language = "Kannada"
+
+
+Named Entities Extraction
+-------------------------
+
+Extracts named entities from a given text.
+
+.. code:: python
+
+    named_entities = ai.named_entities("India is in Asia") #returns a list of named entities, their labels and position in the text
+    #now named_entities = [{"label": "GPE", "end": 5, "start": 0, "name": "India"}, {"label": "LOC", "end": 16, "start": 12, "name": "Asia"}]
+
+
+Sentence Extraction
+-------------------
+
+Extracts individual sentences from a given text.
+
+.. code:: python
+
+    sentences = ai.sentences("Mr. India was a great movie. It was directed by Shekhar Kapur.")
+    #now sentences = ["Mr. India was a great movie.", "It was directed by Shekhar Kapur."]
+
+
+Sentiment Analysis
+------------------
+
+Analyzes the sentiment of a given text.
+
+.. code:: python
+
+    sentiment = ai.sentiment("I really did not like that movie")
+    #now sentiment = "negative"
+
+    sentiment = ai.sentiment ("she is very beautiful")
+    #now sentiment = "positive"
+
+    sentiment = ai.sentiment ("The ambience was good, but the food was bad")
+    #now sentiment = "mixed"
+
+    sentiment = ai.sentiment ("roses are red, violets are blue")
+    #now sentiment = "neutral"
+    
+    
 Chatbot
 -------
 
@@ -198,16 +268,6 @@ The Structured Intent format is the same for output of Intent Extraction API, in
     #returns [{"intent":"query","theme":"Berlin","query_type":"attribute_value","attribute":"location","tense":"present"}]
 
 
-Keyword Extraction
-------------------
-
-Extracts important keywords from given text. The keywords are ordered in the descending order of significance in relation to the given text.
-
-.. code:: python
-
-    keywords = ai.keywords("Delhi is in India")
-    #now keywords = ['India', 'Delhi']
-
 
 Knowledge Graph Query
 ---------------------
@@ -223,34 +283,6 @@ The Structured Intent format is the same for output of Intent Extraction API, in
     #if language other than English, then specify
     answer = ai.graph_query({"theme":"Inde","attribute":"capitale","value":"?"},lang.FRENCH)
     #now answer = {"theme":"Inde","attribute":"capitale","value":"New Delhi"}
-
-
-Language Detection
-------------------
-
-Identifies the language of a given text. Can also differentiate between Chinese, Korean and Japanese texts.
-
-.. code:: python
-
-    language = ai.language("lorem ipsum")
-    #now language = {"iso1":"la","iso3":"lat","language":"Latin"}
-
-    language = ai.language("ನನ್ನ ಹೆಸರು ಗುರು")
-    #now language = {"iso1":"kn","iso3":"kan","language":"Kannada"}
-
-    language = ai.lang_name("ನನ್ನ ಹೆಸರು ಗುರು")
-    #now language = "Kannada"
-
-
-Named Entities Extraction
--------------------------
-
-Extracts named entities from a given text.
-
-.. code:: python
-
-    named_entities = ai.named_entities("India is in Asia") #returns a list of named entities, their labels and position in the text
-    #now named_entities = [{"label": "GPE", "end": 5, "start": 0, "name": "India"}, {"label": "LOC", "end": 16, "start": 12, "name": "Asia"}]
 
 
 Natural Language Generation (NLG)
@@ -291,36 +323,6 @@ Attempts to answer simple queries in natural language using Gurunudi Knowledge G
 
     answer = ai.query("what is Tiramisu")
     #now answer = "coffee-flavoured Italian dessert"
-
-Sentence Extraction
--------------------
-
-Extracts individual sentences from a given text.
-
-.. code:: python
-
-    sentences = ai.sentences("Mr. India was a great movie. It was directed by Shekhar Kapur.")
-    #now sentences = ["Mr. India was a great movie.", "It was directed by Shekhar Kapur."]
-
-
-Sentiment Analysis
-------------------
-
-Analyzes the sentiment of a given text.
-
-.. code:: python
-
-    sentiment = ai.sentiment("I really did not like that movie")
-    #now sentiment = "negative"
-
-    sentiment = ai.sentiment ("she is very beautiful")
-    #now sentiment = "positive"
-
-    sentiment = ai.sentiment ("The ambience was good, but the food was bad")
-    #now sentiment = "mixed"
-
-    sentiment = ai.sentiment ("roses are red, violets are blue")
-    #now sentiment = "neutral"
 
 
 Summary Generation (Summarization)
