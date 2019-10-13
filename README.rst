@@ -96,7 +96,45 @@ AI is a class that abstracts API calls to Gurunudi AI System. Create an AI objec
 
     from gurunudi import lang
     definition=ai.define("ಕನ್ನಡ",lang.KANNADA) #Specify the language if non-English text
+    
 
+Language Detection
+------------------
+
+Identifies the language of a given text. Can also differentiate between Chinese, Korean and Japanese texts.
+
+.. code:: python
+
+    language = ai.language("lorem ipsum")
+    #now language = {"iso1":"la","iso3":"lat","language":"Latin"}
+
+    language = ai.language("ನನ್ನ ಹೆಸರು ಗುರು")
+    #now language = {"iso1":"kn","iso3":"kan","language":"Kannada"}
+
+    language = ai.lang_name("ನನ್ನ ಹೆಸರು ಗುರು")
+    #now language = "Kannada"
+    
+    
+Sentiment Analysis
+------------------
+
+Analyzes the sentiment of a given text.
+
+.. code:: python
+
+    sentiment = ai.sentiment("I really did not like that movie")
+    #now sentiment = "negative"
+
+    sentiment = ai.sentiment ("she is very beautiful")
+    #now sentiment = "positive"
+
+    sentiment = ai.sentiment ("The ambience was good, but the food was bad")
+    #now sentiment = "mixed"
+
+    sentiment = ai.sentiment ("roses are red, violets are blue")
+    #now sentiment = "neutral"
+    
+    
 Autocorrect / Spell Check
 -------------------------
 
@@ -111,6 +149,7 @@ Attempts to automatically fix any spelling errors which includes misspelled word
     #So, if your input text is in a language other than english, you can specify the language as the second argument. See example below. This applies to all AI API calls.
     corrected_text = ai.autocorrect("Les femes ont cessé de prndre des piluls parce qu'elles étaient encintes.",lang.FRENCH)
     #now corrected_text = "Les femmes ont cessé de prendre des pilules parce qu'elles étaient enceintes."
+
 
 Autocomplete
 -------------------------
@@ -134,23 +173,6 @@ Extracts important keywords from given text. The keywords are ordered in the des
     #now keywords = ['India', 'Delhi']
 
 
-Language Detection
-------------------
-
-Identifies the language of a given text. Can also differentiate between Chinese, Korean and Japanese texts.
-
-.. code:: python
-
-    language = ai.language("lorem ipsum")
-    #now language = {"iso1":"la","iso3":"lat","language":"Latin"}
-
-    language = ai.language("ನನ್ನ ಹೆಸರು ಗುರು")
-    #now language = {"iso1":"kn","iso3":"kan","language":"Kannada"}
-
-    language = ai.lang_name("ನನ್ನ ಹೆಸರು ಗುರು")
-    #now language = "Kannada"
-
-
 Named Entities Extraction
 -------------------------
 
@@ -171,39 +193,6 @@ Extracts individual sentences from a given text.
 
     sentences = ai.sentences("Mr. India was a great movie. It was directed by Shekhar Kapur.")
     #now sentences = ["Mr. India was a great movie.", "It was directed by Shekhar Kapur."]
-
-
-Sentiment Analysis
-------------------
-
-Analyzes the sentiment of a given text.
-
-.. code:: python
-
-    sentiment = ai.sentiment("I really did not like that movie")
-    #now sentiment = "negative"
-
-    sentiment = ai.sentiment ("she is very beautiful")
-    #now sentiment = "positive"
-
-    sentiment = ai.sentiment ("The ambience was good, but the food was bad")
-    #now sentiment = "mixed"
-
-    sentiment = ai.sentiment ("roses are red, violets are blue")
-    #now sentiment = "neutral"
-    
-    
-Chatbot
--------
-
-General purpose chatbot which makes use of all other Gurunudi AI apis to have general conversation as well as answer knowledge based queries
-
-.. code:: python
-
-    response = ai.chat("how are you?") #returns a string ex: "I am fine"
-    response = ai.chat("where is Badami") #returns a string ex: "in Karnataka, India"
-    response = ai.chat("do you eat cakes?") #returns a string ex: "software do not eat"
-    response = ai.chat("solve 3x-12=0") #returns a string ex: "4"
 
 
 Co-reference Resolution
@@ -268,7 +257,6 @@ The Structured Intent format is the same for output of Intent Extraction API, in
     #returns [{"intent":"query","theme":"Berlin","query_type":"attribute_value","attribute":"location","tense":"present"}]
 
 
-
 Knowledge Graph Query
 ---------------------
 
@@ -323,6 +311,19 @@ Attempts to answer simple queries in natural language using Gurunudi Knowledge G
 
     answer = ai.query("what is Tiramisu")
     #now answer = "coffee-flavoured Italian dessert"
+   
+    
+Chatbot
+-------
+
+General purpose chatbot which makes use of all other Gurunudi AI apis to have general conversation as well as answer knowledge based queries
+
+.. code:: python
+
+    response = ai.chat("how are you?") #returns a string ex: "I am fine"
+    response = ai.chat("where is Badami") #returns a string ex: "in Karnataka, India"
+    response = ai.chat("do you eat cakes?") #returns a string ex: "software do not eat"
+    response = ai.chat("solve 3x-12=0") #returns a string ex: "4"
 
 
 Summary Generation (Summarization)
