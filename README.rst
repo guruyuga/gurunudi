@@ -162,6 +162,20 @@ Attempts to automatically complete the given sentence to the nearest meaningful 
     #now options = ['Capital of Indonesia', 'Capital of Indiana', 'Capital of india', 'Capital of New Zealand', 'Capital of England', 'Capital of Singapore', 'Capital of Italy', 'Capital of Israel', 'Capital of Ireland', 'Capital of Ontario']
 
 
+Co-reference Resolution
+-----------------------
+
+Attempts to resolve co-referenes in a text (like pronouns) to their corresponding nouns.
+
+.. code:: python
+
+    coreferenced_text = ai.coref("Einstein was a brillian scientist. He was born in Germany.")
+    #now coreferenced_text = "Einstein was a brillian scientist. Einstein was born in Germany."
+
+    coreferenced_text = ai.coref("The women stopped taking pills because they were pregnant.")
+    #now coreferenced_text = "The women stopped taking pills because the women were pregnant"
+
+
 Keyword Extraction
 ------------------
 
@@ -193,20 +207,6 @@ Extracts individual sentences from a given text.
 
     sentences = ai.sentences("Mr. India was a great movie. It was directed by Shekhar Kapur.")
     #now sentences = ["Mr. India was a great movie.", "It was directed by Shekhar Kapur."]
-
-
-Co-reference Resolution
------------------------
-
-Attempts to resolve co-referenes in a text (like pronouns) to their corresponding nouns.
-
-.. code:: python
-
-    coreferenced_text = ai.coref("Einstein was a brillian scientist. He was born in Germany.")
-    #now coreferenced_text = "Einstein was a brillian scientist. Einstein was born in Germany."
-
-    coreferenced_text = ai.coref("The women stopped taking pills because they were pregnant.")
-    #now coreferenced_text = "The women stopped taking pills because the women were pregnant"
 
 
 Definition
