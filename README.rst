@@ -108,8 +108,8 @@ Identifies the language of a given text. Can also differentiate between Chinese,
     language = ai.language("lorem ipsum")
     #now language = {"iso1":"la","iso3":"lat","language":"Latin"}
 
-    language = ai.language("ನನ್ನ ಹೆಸರು ಗುರು")
-    #now language = {"iso1":"kn","iso3":"kan","language":"Kannada"}
+    language = ai.language("消しゴム")
+    #now language = {'iso3': 'jpn', 'language': 'Japanese', 'iso1': 'ja'}
 
     language = ai.lang_name("ನನ್ನ ಹೆಸರು ಗುರು")
     #now language = "Kannada"
