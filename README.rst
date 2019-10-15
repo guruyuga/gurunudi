@@ -5,6 +5,7 @@ Gurunudi AI API: Python client
 Gurunudi (**AI as a Service**) provides a wide range of **Artificial Intelligence based API solutions** (See below). This client library for Gurunudi AI API is commercial open-source software, released under the MIT license.
 
 💫 **Version 1.3.8 out now!**
+💫 If you need access to high performance servers for commercial use at affordable price, please `Contact us <https://guruyuga.com/contact-us/>`_ or `Tweet us <https://twitter.com/guruyuga>`_.
 
 .. image:: https://img.shields.io/pypi/v/gurunudi.svg?style=flat-square
     :target: https://pypi.python.org/pypi/gurunudi
