@@ -201,15 +201,6 @@ class AI(object):
 
 		return self.__call_api(constants.API_NLP,{constants.FIELD_TEXT:text,constants.FIELD_LANG:lang})
 
-	def query(self,text,lang=lang.ENGLISH):
-		"""
-		text (string): The natural language query whose answer has to be fetched
-		lang (string): ISO3 language code of the text
-		returns: answer from Gurunudi Knowledge Graph
-		"""
- 
-		return self.__call_api(constants.API_QUERY,{constants.FIELD_TEXT:text,constants.FIELD_LANG:lang})
-
 	def sentences(self,text,lang=lang.ENGLISH):
 		"""
 		text (string): The text whose sentences have to be extracted
