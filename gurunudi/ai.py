@@ -14,12 +14,16 @@ class AI(object):
 	"""
 
 
-	def __init__(self,version=1):
+	def __init__(self,api_key=None,version=1):
 		"""
 		version (int): The API version to be used while querying Gurunudi Server
+		api_key (string): The API key to access the Gurunudi platform
 
 		"""
 		self.version='v'+str(version)
+		
+		if api_key:
+			config.HEADERS['GNAPI']=api_key
 
 	def autocorrect(self,text,lang=lang.ENGLISH):
 		"""
@@ -64,18 +68,6 @@ class AI(object):
 		return self.__call_api(constants.API_CLASSIFY,{constants.FIELD_TEXT:text,constants.FIELD_LANG:lang,constants.FIELD_MODEL:model})
 
 
-	def contextqa(self,context,text,lang=lang.ENGLISH):
-		"""
-		context (string): The context in which the text has to be answered
-		text (string): The text that has to be answered in given context
-		lang (string): ISO3 language code of context and text
-		returns: response to text based on given context
-
-		"""
-
-		return self.__call_api(constants.API_CONTEXTQA,{constants.FIELD_TEXT:text,constants.FIELD_LANG:lang,constants.FIELD_CONTEXT:context})
-
-
 	def coref(self,text,lang=lang.ENGLISH):
 		"""
 		text (string): The text whose coreferences have to be resolved
@@ -96,17 +88,6 @@ class AI(object):
 
 		return self.__call_api(constants.API_DEFINE,{constants.FIELD_TEXT:text,constants.FIELD_LANG:lang})
  
-
-	def dependency(self,text,lang=lang.ENGLISH):
-		"""
-		text (string): The text whose dependency parse tree has to be created
-		lang (string): ISO3 language code of the text
-		returns: dependecy parsing tree of each sentence in the text
-		
-		"""
-
-		return self.__call_api(constants.API_DEPENDENCY,{constants.FIELD_TEXT:text,constants.FIELD_LANG:lang})
-
 
 	def fix_case(self,text,lang=lang.ENGLISH):
 		"""
@@ -192,24 +173,14 @@ class AI(object):
 
 		return self.__call_api(constants.API_NAMED_ENTITIES,{constants.FIELD_TEXT:text,constants.FIELD_LANG:lang})
 
-	def nlp(self,text,lang=lang.ENGLISH):
+	def query(self,text,lang=lang.ENGLISH):
 		"""
-		text (string): The text to be processed
-		lang (string): ISO3 language code of the language in which the text has to be processed
-		returns: list of NLP data for each sentence in the text
-		"""
-
-		return self.__call_api(constants.API_NLP,{constants.FIELD_TEXT:text,constants.FIELD_LANG:lang})
-
-	def sentences(self,text,lang=lang.ENGLISH):
-		"""
-		text (string): The text whose sentences have to be extracted
+		text (string): The natural language query whose answer has to be fetched
 		lang (string): ISO3 language code of the text
-		returns: sentences in the text
+		returns: answer from Gurunudi Knowledge Graph
 		"""
  
-		return self.__call_api(constants.API_SENTENCES,{constants.FIELD_TEXT:text,constants.FIELD_LANG:lang})
-
+		return self.__call_api(constants.API_QUERY,{constants.FIELD_TEXT:text,constants.FIELD_LANG:lang})
 
 	def sentiment(self,text,lang=lang.ENGLISH):
 		"""
@@ -232,17 +203,6 @@ class AI(object):
 		return self.__call_api(constants.API_SUMMARY,{constants.FIELD_TEXT:text,constants.FIELD_LANG:lang})
  
  
-	def syntax(self,text,lang=lang.ENGLISH):
-		"""
-		text (string): The text to be processed for syntax analysis
-		lang (string): ISO3 language code of the text
-		returns: parts of speech of each token in the given text
-
-		
-		"""
-
-		return self.__call_api(constants.API_SYNTAX,{constants.FIELD_TEXT:text,constants.FIELD_LANG:lang})
-
 	def title(self,text,lang=lang.ENGLISH):
 		"""
 		text (string): The text whose title has to be generated
@@ -296,16 +256,21 @@ class AI(object):
 			if config.DEBUG:
 				print("Response Code",response.status_code)
 				print("Response data",json)
-
+				
 			#if api returned error
 			if constants.FIELD_ERROR in json:
 				raise APIError(json[constants.FIELD_ERROR])
 
 			if response.status_code==200:#if response OK
+				#if raw json response is requested	
+				if raw_response=True:	
+					return json
+
 				if constants.FIELD_TEXT in json:#if response is plain text
 					return json[constants.FIELD_TEXT]
 				if constants.FIELD_LIST in json:#if response is a list
 					return json[constants.FIELD_LIST]
+					
 				#neither text response nor list response, indicating this is a dict response. So return it as is
 				return json
 			else:
