@@ -4,7 +4,21 @@ Gurunudi AI API: Python client
 **Gurunudi** is a Python library for accessing the `Gurunudi Artificial Intelligence API <https://www.gurunudi.com/>`_.
 Gurunudi (**AI as a Service**) provides a wide range of **Artificial Intelligence based API solutions** (See below). This client library for Gurunudi AI API is commercial open-source software, released under the MIT license.
 
-💫 **Initial beta release for internal testing!**
+💫 **Version 1.4.0 out now!**
+💫 The free version uses less accurate lightweight models and has a slower response due to limited load capacity.
+💫 If you need access to more accurate high performance servers for commercial use at affordable price, please `Contact us <mailto:contact@gurunudi.com>`_ or `Tweet us <https://twitter.com/gurunudi>`_.
+
+.. image:: https://img.shields.io/pypi/v/gurunudi.svg?style=flat-square
+    :target: https://pypi.python.org/pypi/gurunudi
+    :alt: pypi Version
+
+.. image:: https://badges.gitter.im/guruyuga/gurunudi.svg
+    :target: https://gitter.im/guruyuga/gurunudi
+    :alt: Gurunudi on Gitter 
+
+.. image:: https://img.shields.io/twitter/follow/gurunudi.svg?style=social&label=Follow
+    :target: https://twitter.com/gurunudi
+    :alt: gurunudi on Twitter
 
 📖 Installation
 ================
@@ -386,3 +400,4 @@ Attempts to translate text from one language to another.
     #arguments are source text to be translated, target language, source language
     translation = ai.translate("New Delhi is the capital of India",lang.GERMAN,lang.ENGLISH)
     #now translation = "Neu-Delhi ist die Hauptstadt von Indien"
+

@@ -6,12 +6,12 @@ pep420_package_finder = PEP420PackageFinder()
 readme=open('README.rst',encoding='utf8').read()
 
 setup(name='gurunudi',
-      version='1.3.8',	
+      version='1.4.0',	
       description='The official Python client for Gurunudi AI API',
       long_description=readme,
       url='http://github.com/guruyuga/gurunudi',
       author='GuruYuga',
-      author_email='guruyuga@use.startmail.com',
+      author_email='contact@gurunudi.com',
       license='Apache-2.0',
       packages=pep420_package_finder.find('.', include=['gurunudi*']),
       keywords=["guruyuga","gurunudi","artificial-intelligence","chatbot","nlp","nlg","nli","machine-learning","sentiment-analysis","natural-language-processing","natural-language-generation","natural-language-inference","machine-translation","autocomplete","autocorrect","spell-check","coreference-resolution","knowledge-graph","expert-system","context-qa","topic-modeling"],
