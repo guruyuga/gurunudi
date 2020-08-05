@@ -6,7 +6,7 @@ import requests
 from . import constants
 from . import lang
 from . import config
-
+import sys
 
 class AI(object):
 	"""
@@ -235,7 +235,7 @@ class AI(object):
 		return self.__call_api(constants.API_TRANSLATE,{constants.FIELD_TEXT:text,constants.FIELD_LANG:src_lang,constants.FIELD_TARGET_LANG:target_lang})
 
  
-	def __call_api(self,api,data):
+	def __call_api(self,api,data,raw_response=False):
 		"""
 		calls given Gurunudi api with given data and returns the result
 		api (string): The name of the API to call
@@ -263,7 +263,7 @@ class AI(object):
 
 			if response.status_code==200:#if response OK
 				#if raw json response is requested	
-				if raw_response=True:	
+				if raw_response:	
 					return json
 
 				if constants.FIELD_TEXT in json:#if response is plain text
@@ -277,6 +277,7 @@ class AI(object):
 				raise APIError("status_code_"+str(response.status_code))
 
 		except requests.exceptions.ConnectionError as ex:
+			print(ex,file=sys.stderr)
 			raise APIError(constants.ERROR_SERVER_INACCESSIBLE)
 
  
