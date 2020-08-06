@@ -2,11 +2,11 @@ Gurunudi AI API: Python client
 ******************************
 
 **Gurunudi** is a Python library for accessing the `Gurunudi Artificial Intelligence API <https://www.gurunudi.com/>`_.
-Gurunudi (**AI as a Service**) provides a wide range of **Artificial Intelligence based API solutions** (See below). This client library for Gurunudi AI API is commercial open-source software, released under the MIT license.
+Gurunudi (**AI as a Service**) provides a wide range of **Artificial Intelligence based API solutions** (See below).
 
 💫 **Version 1.4.1 out now!**
 💫 The free version uses less accurate lightweight models and has a slower response due to limited load capacity.
-💫 If you need access to more accurate high performance servers for commercial use at affordable price, please `Contact us <mailto:contact@gurunudi.com>`_ or `Tweet us <https://twitter.com/gurunudi>`_.
+💫 For commercial use at an affordable price, `Contact us <mailto:contact@gurunudi.com>`_ or `Tweet us <https://twitter.com/gurunudi>`_.
 
 .. image:: https://img.shields.io/pypi/v/gurunudi.svg?style=flat-square
     :target: https://pypi.python.org/pypi/gurunudi
@@ -92,7 +92,7 @@ Basics
 
     ai=AI()
 
-AI is a class that abstracts API calls to Gurunudi AI System. Create an AI object as shown above. Except for language detection API call, all other text based API calls take an additional optional argument as the language code which if not present, defaults to English (except for language detection call). The language code is a 3-letter `ISO 639-3 code <https://en.wikipedia.org/wiki/List_of_ISO_639-3_codes>`_. For language codes and features currently supported by each language, see `supported languages <https://guruyuga.com/languages/>`_.
+AI is the class that abstracts API calls to Gurunudi AI System. Create an AI object as shown above. Except for language detection API call, all other text based API calls take an additional optional argument as the language code which if not present, defaults to English. See example below to specify language during an AI API call.
 
 .. code:: python
 
