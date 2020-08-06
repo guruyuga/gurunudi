@@ -92,7 +92,7 @@ Basics
 
     ai=AI()
 
-AI is the class that abstracts API calls to Gurunudi AI System. Create an AI object as shown above. Except for language detection API call, all other text based API calls take an additional optional argument as the language code which if not present, defaults to English. See example below to specify language during an AI API call.
+AI is the class that abstracts API calls to Gurunudi AI Platform. Create an AI object as shown above. Except for language detection API call, all other text based API calls take an additional optional argument as the language code which if not present, defaults to English. See example below to specify language during an AI API call.
 
 .. code:: python
 
