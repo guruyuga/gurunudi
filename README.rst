@@ -5,7 +5,7 @@ Gurunudi AI API: Python client
 Gurunudi (**AI as a Service**) provides a wide range of **Artificial Intelligence based API solutions** (See below).
 
 💫 **Version 1.4.1 out now!**
-💫 The free version uses less accurate lightweight models and has a slower response due to limited load capacity.
+💫 The free version uses less accurate lightweight models and has a slower response due to shared server load.
 💫 For commercial use at an affordable price, `Contact us <mailto:contact@gurunudi.com>`_ or `Tweet us <https://twitter.com/gurunudi>`_.
 
 .. image:: https://img.shields.io/pypi/v/gurunudi.svg?style=flat-square
