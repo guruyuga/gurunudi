@@ -6,7 +6,7 @@ Gurunudi (**AI as a Service**) provides a wide range of **Artificial Intelligenc
 
 💫 **Version 1.4.1 out now!**
 💫 The free version uses less accurate lightweight models and has a slower response due to shared server load.
-💫 For commercial use at an affordable price, `Contact us <mailto:contact@gurunudi.com>`_ or `Tweet us <https://twitter.com/gurunudi>`_.
+💫 For commercial use (an affordable, pay as you go pricing model), `Contact us <mailto:contact@gurunudi.com>`_ or `Tweet us <https://twitter.com/gurunudi>`_.
 
 .. image:: https://img.shields.io/pypi/v/gurunudi.svg?style=flat-square
     :target: https://pypi.python.org/pypi/gurunudi
@@ -140,23 +140,23 @@ Analyzes the sentiment of a given text.
 Autocorrect / Spell Check
 -------------------------
 
-Attempts to automatically fix any spelling errors which includes misspelled words, mixed up words.
+Attempts to automatically fix any spelling errors which includes misspelled words, mixed up words. Autocorrect also corrects grammatical errors, incorrect cases and missing punctuations.
 
 .. code:: python
 
     corrected_text = ai.autocorrect("who is the primem inister of idnia")
-    #now corrected_text = "who is the prime minister of india"
+    #now corrected_text = "Who is the prime minister of India?"
 
     #English is the default language for all API calls (except langauge detection API that has no language parameter as input). 
     #So, if your input text is in a language other than english, you can specify the language as the second argument. See example below. This applies to all AI API calls.
-    corrected_text = ai.autocorrect("Les femes ont cessé de prndre des piluls parce qu'elles étaient encintes.",lang.FRENCH)
-    #now corrected_text = "Les femmes ont cessé de prendre des pilules parce qu'elles étaient enceintes."
+    corrected_text = ai.autocorrect("les femes ont cessé de prndre des piluls parce qu'elles étaient encintes",lang.FRENCH)
+    #now corrected_text = "Les femmes ont cessé de prendre des pilules parce qu'elles étaient enceintes?"
 
 
 Autocomplete
 -------------------------
 
-Attempts to automatically complete the given sentence to the nearest meaningful sentence.
+Attempts to automatically complete the given text to the nearest meaningful query. This is useful for autocompleting search queries.
 
 .. code:: python
 
@@ -167,11 +167,11 @@ Attempts to automatically complete the given sentence to the nearest meaningful 
 Co-reference Resolution
 -----------------------
 
-Attempts to resolve co-referenes in a text (like pronouns) to their corresponding nouns.
+Attempts to resolve co-referenes in a text (like pronouns) to their corresponding nouns. Also calls fixes grammatical errors and incorrect cases.
 
 .. code:: python
 
-    coreferenced_text = ai.coref("Einstein was a brillian scientist. He was born in Germany.")
+    coreferenced_text = ai.coref("Einstein was a brillian scientist. He was born in germany.")
     #now coreferenced_text = "Einstein was a brillian scientist. Einstein was born in Germany."
 
     coreferenced_text = ai.coref("The women stopped taking pills because they were pregnant.")
@@ -200,17 +200,6 @@ Extracts named entities from a given text.
     #now named_entities = [{"label": "GPE", "end": 5, "start": 0, "name": "India"}, {"label": "LOC", "end": 16, "start": 12, "name": "Asia"}]
 
 
-Sentence Extraction
--------------------
-
-Extracts individual sentences from a given text.
-
-.. code:: python
-
-    sentences = ai.sentences("Mr. India was a great movie. It was directed by Shekhar Kapur.")
-    #now sentences = ["Mr. India was a great movie.", "It was directed by Shekhar Kapur."]
-
-
 Definition
 ----------
 
@@ -225,7 +214,7 @@ Given a word or a noun, provides its definition.
 Fix Case (True Case)
 --------------------
 
-Attempts to fix the case for case sensitive language scripts like English to generate true cased sentencete.
+Attempts to fix the case for case sensitive language scripts like English to generate true cased sentence. This is an alias to autocorrect, and hence will also correct incorrect spellings and also fix grammatical errors like punctuation.
 
 .. code:: python
 
@@ -400,4 +389,3 @@ Attempts to translate text from one language to another.
     #arguments are source text to be translated, target language, source language
     translation = ai.translate("New Delhi is the capital of India",lang.GERMAN,lang.ENGLISH)
     #now translation = "Neu-Delhi ist die Hauptstadt von Indien"
-
