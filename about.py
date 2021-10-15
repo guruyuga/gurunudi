@@ -4,7 +4,7 @@
 # https://github.com/pypa/warehouse/blob/master/warehouse/__about__.py
 
 __title__ = 'gurunudi'
-__version__ = '1.4.1'
+__version__ = '2.0.3'
 __summary__ = 'The official Python client for Gurunudi AI API'
 __uri__ = 'https://gurunudi.com/'
 __author__ = 'Gurudev Rao'
