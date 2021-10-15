@@ -105,6 +105,8 @@ Automatic Language Detection
 Automatic language detection means you do not have to change anything in your code, even if the language is not English.
 In the below example, we pass "como estas" (meaning "how are you" in Spanish language) as input text. Gurunudi automatically replies in Spanish saying Estoy bien (meaning "I am fine" in Spanish).
 
+.. code:: python
+
     response=ai.chat("como estas")
     #now response = {"text": "Estoy bien"}    
 
